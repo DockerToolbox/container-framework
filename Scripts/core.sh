@@ -44,7 +44,6 @@ LATEST=false
 PUBLISH=false
 SCAN=false
 GHCR=false
-WEEKLY=false
 
 # -------------------------------------------------------------------------------- #
 # -------------------------------------------------------------------------------- #
@@ -392,7 +391,6 @@ cat <<EOF
       -p | --publish  : Publish a container
       -s | --scan     : Scan a container
       -G | --ghcr     : Publish to Github Container Registry
-      =w | --weeklt   : Weekly build from master/main head
 EOF
     abort
 }
@@ -427,8 +425,8 @@ function process_options()
 
     test_getopt
 
-    options=hdbcgpslGw
-    longopts=help,debug,build,clean,generate,publish,scan,latest,ghcr,weekly
+    options=hdbcgpslG
+    longopts=help,debug,build,clean,generate,publish,scan,latest,ghcr
 
     if ! PARSED=$(getopt --options=$options --longoptions=$longopts --name "$0" -- "$@") && true; then
         usage
@@ -468,10 +466,6 @@ function process_options()
                 shift
                 ;;
             -G|--ghcr)
-                GHCR=true
-                shift
-                ;;
-            -W|--weekly)
                 GHCR=true
                 shift
                 ;;
