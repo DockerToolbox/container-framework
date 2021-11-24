@@ -11,7 +11,7 @@ outputs:
   archlinux-versions:
     description: "Arch Linux Versions"
     value: ${{steps.archlinux.outputs.versions}}
- centos-versions:
+  centos-versions:
     description: "Centos Versions"
     value: ${{steps.centos.outputs.versions}}
   debian-versions:
