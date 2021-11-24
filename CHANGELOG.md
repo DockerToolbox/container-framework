@@ -9,6 +9,8 @@ This changelog was automatically generated using [Caretaker](https://github.com/
 
 - Add extra features [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
 
+- Add extra features [`[80ed25a]`](https://github.com/DockerToolbox/container-framework/commit/80ed25a9e0c06aa0428cdd7f465c1a602b6da102)
+
 - Update [`[a116d18]`](https://github.com/DockerToolbox/container-framework/commit/a116d186bab27864667a7b79c6a5cf779b2d7621)
 
 - Updated [`[26d7556]`](https://github.com/DockerToolbox/container-framework/commit/26d75568094332229ba0c962aee1b23b27d8382a)
