@@ -31,31 +31,31 @@ jobs:
         uses: actions/checkout@v2
       - name: Generate alpine version matrix
         id: alpine
-        run: echo "::set-output name=versions::$(ls Dockerfiles/alpine | cut -f3 -d'/' | sort -n | jq -cnR '[inputs | select(length>0)]')"
+        run: echo "::set-output name=versions::$(ls Dockerfiles/alpine/*/ | cut -f3 -d'/' | sort -n | jq -cnR '[inputs | select(length>0)]')"
       - name: Generate amazon linux version matrix
         id: amazonlinux
-        run: echo "::set-output name=versions::$(ls Dockerfiles/amazonlinux | cut -f3 -d'/' | sort -n | jq -cnR '[inputs | select(length>0)]')"
+        run: echo "::set-output name=versions::$(ls Dockerfiles/amazonlinux/*/ | cut -f3 -d'/' | sort -n | jq -cnR '[inputs | select(length>0)]')"
       - name: Generate arch linux version matrix
         id: archlinux
-        run: echo "::set-output name=versions::$(ls Dockerfiles/archlinux | cut -f3 -d'/' | sort -n | jq -cnR '[inputs | select(length>0)]')"
+        run: echo "::set-output name=versions::$(ls Dockerfiles/archlinux/*/ | cut -f3 -d'/' | sort -n | jq -cnR '[inputs | select(length>0)]')"
       - name: Generate centos version matrix
         id: centos
-        run: echo "::set-output name=versions::$(ls Dockerfiles/centos | cut -f3 -d'/' | sort -n | jq -cnR '[inputs | select(length>0)]')"
+        run: echo "::set-output name=versions::$(ls Dockerfiles/centos/*/ | cut -f3 -d'/' | sort -n | jq -cnR '[inputs | select(length>0)]')"
       - name: Generate debian version matrix
         id: debian
-        run: echo "::set-output name=versions::$(ls Dockerfiles/debian | cut -f3 -d'/' | sort -n | jq -cnR '[inputs | select(length>0)]')"
+        run: echo "::set-output name=versions::$(ls Dockerfiles/debian/*/ | cut -f3 -d'/' | sort -n | jq -cnR '[inputs | select(length>0)]')"
       - name: Generate oracle linux version matrix
         id: oraclelinux
-        run: echo "::set-output name=versions::$(ls Dockerfiles/oraclelinux | cut -f3 -d'/' | sort -n | jq -cnR '[inputs | select(length>0)]')"
+        run: echo "::set-output name=versions::$(ls Dockerfiles/oraclelinux/*/ | cut -f3 -d'/' | sort -n | jq -cnR '[inputs | select(length>0)]')"
       - name: Generate photon version matrix
         id: photon
-        run: echo "::set-output name=versions::$(ls Dockerfiles/photon | cut -f3 -d'/' | sort -n | jq -cnR '[inputs | select(length>0)]')"
+        run: echo "::set-output name=versions::$(ls Dockerfiles/photon/*/ | cut -f3 -d'/' | sort -n | jq -cnR '[inputs | select(length>0)]')"
       - name: Generate scientific linux version matrix
         id: scientificlinux
-        run: echo "::set-output name=versions::$(ls Dockerfiles/sl | cut -f3 -d'/' | sort -n | jq -cnR '[inputs | select(length>0)]')"
+        run: echo "::set-output name=versions::$(ls Dockerfiles/sl/*/ | cut -f3 -d'/' | sort -n | jq -cnR '[inputs | select(length>0)]')"
       - name: Generate ubuntu version matrix
         id: ubuntu
-        run: echo "::set-output name=versions::$(ls Dockerfiles/ubuntu | cut -f3 -d'/' | sort -n | jq -cnR '[inputs | select(length>0)]')"
+        run: echo "::set-output name=versions::$(ls Dockerfiles/ubuntu/*/ | cut -f3 -d'/' | sort -n | jq -cnR '[inputs | select(length>0)]')"
   alpine:
     runs-on: ubuntu-latest
     needs: create-matrices
