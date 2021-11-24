@@ -26,7 +26,7 @@ jobs:
       photon-versions: ${{steps.versions.outputs.photon-versions}}
       scientificlinux-versions: ${{steps.versions.outputs.scientificlinux-versions}}
       ubuntu-versions: ${{steps.versions.outputs.ubuntu-versions}}
-  steps:
+    steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
       - name: Get version matrices
