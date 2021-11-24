@@ -229,6 +229,7 @@ jobs:
     if: always()
     name: Slack Post Workflow Notification
     needs:
+      - shellcheck
       - alpine
       - amazonlinux
       - archlinux
@@ -238,7 +239,6 @@ jobs:
       - photon
       - scientificlinux
       - ubuntu
-      - shellcheck
     runs-on: ubuntu-latest
     steps:
       - name: Slack Post Workflow Notification
