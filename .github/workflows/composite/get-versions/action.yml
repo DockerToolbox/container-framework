@@ -1,0 +1,71 @@
+name: 'Versions'
+description: 'Get Versions'
+
+outputs:
+  alpine-versions:
+    description: "Alpine Versions"
+    value: ${{steps.alpine.outputs.versions}}
+  amazonlinux-versions:
+    description: "Amazon Linux Versions"
+    value: ${{steps.amazonlinux.outputs.versions}}
+  archlinux-versions:
+    description: "Arch Linux Versions"
+    value: ${{steps.archlinux.outputs.versions}}
+ centos-versions:
+    description: "Centos Versions"
+    value: ${{steps.centos.outputs.versions}}
+  debian-versions:
+    description: "Debian Versions"
+    value: ${{steps.debian.outputs.versions}}
+  oraclelinux-versions:
+    description: "Oracle Linux Versions"
+    value: ${{steps.oraclelinux.outputs.versions}}
+  photon-versions:
+    description: "Photon Linux Versions"
+    value: ${{steps.photon.outputs.versions}}
+  scientificlinux-versions:
+    description: "Scientific Linux Versions"
+    value: ${{steps.scientificlinux.outputs.versions}}
+  ubuntu-versions:
+    description: "Ubuntu Versions"
+    value: ${{steps.ubuntu.outputs.versions}}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Generate alpine version matrix
+      id: alpine
+      run: echo "::set-output name=versions::$(ls -d Dockerfiles/alpine/*/ | cut -f3 -d'/' | sort -n | jq -cnR '[inputs | select(length>0)]')"
+      shell: bash
+    - name: Generate amazon linux version matrix
+      id: amazonlinux
+      run: echo "::set-output name=versions::$(ls -d Dockerfiles/amazonlinux/*/ | cut -f3 -d'/' | sort -n | jq -cnR '[inputs | select(length>0)]')"
+      shell: bash
+    - name: Generate arch linux version matrix
+      id: archlinux
+      run: echo "::set-output name=versions::$(ls -d Dockerfiles/archlinux/*/ | cut -f3 -d'/' | sort -n | jq -cnR '[inputs | select(length>0)]')"
+      shell: bash
+    - name: Generate centos version matrix
+      id: centos
+      run: echo "::set-output name=versions::$(ls -d Dockerfiles/centos/*/ | cut -f3 -d'/' | sort -n | jq -cnR '[inputs | select(length>0)]')"
+      shell: bash
+    - name: Generate debian version matrix
+      id: debian
+      run: echo "::set-output name=versions::$(ls -d Dockerfiles/debian/*/ | cut -f3 -d'/' | sort -n | jq -cnR '[inputs | select(length>0)]')"
+      shell: bash
+    - name: Generate oracle linux version matrix
+      id: oraclelinux
+      run: echo "::set-output name=versions::$(ls -d Dockerfiles/oraclelinux/*/ | cut -f3 -d'/' | sort -n | jq -cnR '[inputs | select(length>0)]')"
+      shell: bash
+    - name: Generate photon version matrix
+      id: photon
+      run: echo "::set-output name=versions::$(ls -d Dockerfiles/photon/*/ | cut -f3 -d'/' | sort -n | jq -cnR '[inputs | select(length>0)]')"
+      shell: bash
+    - name: Generate scientific linux version matrix
+      id: scientificlinux
+      run: echo "::set-output name=versions::$(ls -d Dockerfiles/sl/*/ | cut -f3 -d'/' | sort -n | jq -cnR '[inputs | select(length>0)]')"
+      shell: bash
+    - name: Generate ubuntu version matrix
+      id: ubuntu
+      run: echo "::set-output name=versions::$(ls -d Dockerfiles/ubuntu/*/ | cut -f3 -d'/' | sort -n | jq -cnR '[inputs | select(length>0)]')"
+      shell: bash
