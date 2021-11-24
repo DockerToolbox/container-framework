@@ -13,12 +13,56 @@ on:
       - main
 
 jobs:
+  create-matrices:
+    name: Create version matrices
+    runs-on: ubuntu-latest
+    outputs:
+      alpine-versions: ${{steps.alpine.outputs.versions}}
+      amazonlinux-versions: ${{steps.amazonlinux.outputs.versions}}
+      archlinux-versions: ${{steps.archlinux.outputs.versions}}
+      centos-versions: ${{steps.centos.outputs.versions}}
+      debian-versions: ${{steps.debian.outputs.versions}}
+      oraclelinux-versions: ${{steps.oraclelinux.outputs.versions}}
+      photon-versions: ${{steps.photon.outputs.versions}}
+      scientificlinux-versions: ${{steps.scientificlinux.outputs.versions}}
+      ubuntu-versions: ${{steps.ubuntu.outputs.versions}}
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+      - name: Generate alpine version matrix
+        id: alpine
+        run: echo "::set-output name=versions::$(ls Dockerfiles/alpine|sort -n|jq -cnR '[inputs | select(length>0)]')"
+      - name: Generate amazon linux version matrix
+        id: amazonlinux
+        run: echo "::set-output name=versions::$(ls Dockerfiles/amazonlinux|sort -n|jq -cnR '[inputs | select(length>0)]')"
+      - name: Generate arch linux version matrix
+        id: archlinux
+        run: echo "::set-output name=versions::$(ls Dockerfiles/archlinux|sort -n|jq -cnR '[inputs | select(length>0)]')"
+      - name: Generate centos version matrix
+        id: centos
+        run: echo "::set-output name=versions::$(ls Dockerfiles/centos|sort -n|jq -cnR '[inputs | select(length>0)]')"
+      - name: Generate debian version matrix
+        id: debian
+        run: echo "::set-output name=versions::$(ls Dockerfiles/debian|sort -n|jq -cnR '[inputs | select(length>0)]')"
+      - name: Generate oracle linux version matrix
+        id: oraclelinux
+        run: echo "::set-output name=versions::$(ls Dockerfiles/oraclelinux|sort -n|jq -cnR '[inputs | select(length>0)]')"
+      - name: Generate photon version matrix
+        id: photon
+        run: echo "::set-output name=versions::$(ls Dockerfiles/photon|sort -n|jq -cnR '[inputs | select(length>0)]')"
+      - name: Generate scientific linux version matrix
+        id: scientificlinux
+        run: echo "::set-output name=versions::$(ls Dockerfiles/sl|sort -n|jq -cnR '[inputs | select(length>0)]')"
+      - name: Generate ubuntu version matrix
+        id: ubuntu
+        run: echo "::set-output name=versions::$(ls Dockerfiles/ubuntu|sort -n|jq -cnR '[inputs | select(length>0)]')"
   alpine:
     runs-on: ubuntu-latest
+    needs: create-matrices
     strategy:
       fail-fast: false
       matrix:
-        version: [ '3.11', '3.12', '3.13', '3.14', '3.15' ]
+        version: ${{fromJson(needs.create-matrices.outputs.alpine-versions)}}
     name: Build on Alpine Linux ${{ matrix.version }}
     steps:
       - uses: actions/checkout@v2
@@ -32,10 +76,11 @@ jobs:
         run: Dockerfiles/alpine/${{ matrix.version }}/manage.sh --build --clean
   amazonlinux:
     runs-on: ubuntu-latest
+    needs: create-matrices
     strategy:
       fail-fast: false
       matrix:
-        version: [ '1', '2' ]
+        version: ${{fromJson(needs.create-matrices.outputs.amazonlinux-versions)}}
     name: Build on Amazon Linux ${{ matrix.version }}
     steps:
       - uses: actions/checkout@v2
@@ -49,10 +94,11 @@ jobs:
         run: Dockerfiles/amazonlinux/${{ matrix.version }}/manage.sh --build --clean
   archlinux:
     runs-on: ubuntu-latest
+    needs: create-matrices
     strategy:
       fail-fast: false
       matrix:
-        version: [ 'base' ]
+        version: ${{fromJson(needs.create-matrices.outputs.archlinux-versions)}}
     name: Build on Arch Linux ${{ matrix.version }}
     steps:
       - uses: actions/checkout@v2
@@ -66,10 +112,11 @@ jobs:
         run: Dockerfiles/archlinux/${{ matrix.version }}/manage.sh --build --clean
   centos:
     runs-on: ubuntu-latest
+    needs: create-matrices
     strategy:
       fail-fast: false
       matrix:
-        version: [ '7', '8' ]
+        version: ${{fromJson(needs.create-matrices.outputs.centos-versions)}}
     name: Build on Centos ${{ matrix.version }}
     steps:
       - uses: actions/checkout@v2
@@ -83,10 +130,11 @@ jobs:
         run: Dockerfiles/centos/${{ matrix.version }}/manage.sh --build --clean
   debian:
     runs-on: ubuntu-latest
+    needs: create-matrices
     strategy:
       fail-fast: false
       matrix:
-        version: [ '9', '9-slim', '10', '10-slim', '11', '11-slim', '12', '12-slim' ]
+        version: ${{fromJson(needs.create-matrices.outputs.debian-versions)}}
     name: Build on Debian ${{ matrix.version }}
     steps:
       - uses: actions/checkout@v2
@@ -100,10 +148,11 @@ jobs:
         run: Dockerfiles/debian/${{ matrix.version }}/manage.sh --build --clean
   oraclelinux:
     runs-on: ubuntu-latest
+    needs: create-matrices
     strategy:
       fail-fast: false
       matrix:
-        version: [ '7', '7-slim', '8', '8-slim' ]
+        version: ${{fromJson(needs.create-matrices.outputs.oraclelinux-versions)}}
     name: Build on Oracle Linux ${{ matrix.version }}
     steps:
       - uses: actions/checkout@v2
@@ -117,10 +166,11 @@ jobs:
         run: Dockerfiles/oraclelinux/${{ matrix.version }}/manage.sh --build --clean
   photon:
     runs-on: ubuntu-latest
+    needs: create-matrices
     strategy:
       fail-fast: false
       matrix:
-        version: [ '1.0', '2.0', '3.0', '4.0' ]
+        version: ${{fromJson(needs.create-matrices.outputs.photon-versions)}}
     name: Build on Photon ${{ matrix.version }}
     steps:
       - uses: actions/checkout@v2
@@ -132,12 +182,13 @@ jobs:
         run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/hadolint/master/pipeline.sh)
       - name: Build on Photon ${{ matrix.version }}
         run: Dockerfiles/photon/${{ matrix.version }}/manage.sh --build --clean
-  sl:
+  scientificlinux:
     runs-on: ubuntu-latest
+    needs: create-matrices
     strategy:
       fail-fast: false
       matrix:
-        version: [ '7' ]
+        version: ${{fromJson(needs.create-matrices.outputs.scientificlinux-versions)}}
     name: Build on Scientific Linux ${{ matrix.version }}
     steps:
       - uses: actions/checkout@v2
@@ -151,10 +202,11 @@ jobs:
         run: Dockerfiles/sl/${{ matrix.version }}/manage.sh --build --clean
   ubuntu:
     runs-on: ubuntu-latest
+    needs: create-matrices
     strategy:
       fail-fast: false
       matrix:
-        version: [ '14.04', '16.04', '18.04', '20.04', '22.04' ]
+        version: ${{fromJson(needs.create-matrices.outputs.ubuntu-versions)}}
     name: Build on Ubuntu ${{ matrix.version }}
     steps:
       - uses: actions/checkout@v2
@@ -184,7 +236,7 @@ jobs:
       - debian
       - oraclelinux
       - photon
-      - sl
+      - scientificlinux
       - ubuntu
       - shellcheck
     runs-on: ubuntu-latest

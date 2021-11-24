@@ -1,7 +1,7 @@
-name: release
+name: weekly
 on:
-  push:
-    tags: 'v*'
+  schedule:
+    - cron:  '0 2 * * 1'
     
 jobs:
   alpine:
@@ -11,7 +11,6 @@ jobs:
       matrix:
         version: [ '3.11', '3.12', '3.13', '3.14', '3.15' ]
     name: Build on Alpine Linux ${{ matrix.version }}
-    steps:
     steps:
       - name: Get tag name
         id: get_tag_name
@@ -43,7 +42,6 @@ jobs:
         version: [ '1', '2' ]
     name: Build on Amazon Linux ${{ matrix.version }}
     steps:
-    steps:
       - name: Get tag name
         id: get_tag_name
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
@@ -73,7 +71,6 @@ jobs:
       matrix:
         version: [ 'base' ]
     name: Build on Arch Linux ${{ matrix.version }}
-    steps:
     steps:
       - name: Get tag name
         id: get_tag_name
@@ -105,7 +102,6 @@ jobs:
         version: [ '7', '8' ]
     name: Build on Centos ${{ matrix.version }}
     steps:
-    steps:
       - name: Get tag name
         id: get_tag_name
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
@@ -135,7 +131,6 @@ jobs:
       matrix:
         version: [ '9', '9-slim', '10', '10-slim', '11', '11-slim', '12', '12-slim' ]
     name: Build on Debian ${{ matrix.version }}
-    steps:
     steps:
       - name: Get tag name
         id: get_tag_name
@@ -167,7 +162,6 @@ jobs:
         version: [ '7', '7-slim', '8', '8-slim' ]
     name: Build on Oracle Linux ${{ matrix.version }}
     steps:
-    steps:
       - name: Get tag name
         id: get_tag_name
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
@@ -197,7 +191,6 @@ jobs:
       matrix:
         version: [ '1.0', '2.0', '3.0', '4.0' ]
     name: Build on Photon ${{ matrix.version }}
-    steps:
     steps:
       - name: Get tag name
         id: get_tag_name
@@ -229,7 +222,6 @@ jobs:
         version: [ '7' ]
     name: Build on Scientific Linux ${{ matrix.version }}
     steps:
-    steps:
       - name: Get tag name
         id: get_tag_name
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
@@ -260,7 +252,6 @@ jobs:
         version: [ '14.04', '16.04', '18.04', '20.04', '22.04' ]
     name: Build on Ubuntu ${{ matrix.version }}
     steps:
-    steps:
       - name: Get tag name
         id: get_tag_name
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
@@ -287,7 +278,6 @@ jobs:
     name: Awesomebot
     runs-on: ubuntu-latest
     steps:
-    steps:
       - name: Get tag name
         id: get_tag_name
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
@@ -308,7 +298,6 @@ jobs:
     name: ShellCheck
     runs-on: ubuntu-latest
     steps:
-    steps:
       - name: Get tag name
         id: get_tag_name
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
@@ -320,7 +309,6 @@ jobs:
   yaml-lint:
     name: YAML Lint
     runs-on: ubuntu-latest
-    steps:
     steps:
       - name: Get tag name
         id: get_tag_name
