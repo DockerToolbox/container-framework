@@ -71,10 +71,10 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
   scientificlinux:
     needs: get-git-ref
-    name: Ccientific Linux
+    name: Scientific Linux
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
-      directory: scientificlinux
+      directory: sl
       ref: ${{ needs.get-git-ref.outputs.ref }}
   ubuntu:
     needs: get-git-ref
@@ -84,10 +84,13 @@ jobs:
       directory: ubuntu
       ref: ${{ needs.get-git-ref.outputs.ref }}
   shellcheck:
+    needs: get-git-ref
     name: ShellCheck
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ needs.get-git-ref.outputs.ref }}
       - name: Run Shellcheck
         run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/shellcheck/master/pipeline.sh)
   slack-workflow-status:
