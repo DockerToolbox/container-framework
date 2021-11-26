@@ -10,190 +10,79 @@ on:
   pull_request:
     branches:
       - master
-      - main
 
 jobs:
-  create-matrices:
-    name: Create version matrices
+  get-git-ref:
+    name: Get Git Ref
     runs-on: ubuntu-latest
     outputs:
-      alpine-versions: ${{steps.versions.outputs.alpine-versions}}
-      amazonlinux-versions: ${{steps.versions.outputs.amazonlinux-versions}}
-      archlinux-versions: ${{steps.versions.outputs.archlinux-versions}}
-      centos-versions: ${{steps.versions.outputs.centos-versions}}
-      debian-versions: ${{steps.versions.outputs.debian-versions}}
-      oraclelinux-versions: ${{steps.versions.outputs.oraclelinux-versions}}
-      photon-versions: ${{steps.versions.outputs.photon-versions}}
-      scientificlinux-versions: ${{steps.versions.outputs.scientificlinux-versions}}
-      ubuntu-versions: ${{steps.versions.outputs.ubuntu-versions}}
+      ref: ${{steps.get-git-ref.outputs.ref}}
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
-      - name: Get version matrices
-        id: versions
-        uses: ./.github/workflows/composite/get-versions
+        run: echo "::set-output name=ref::${{ github.ref }}"
   alpine:
-    runs-on: ubuntu-latest
-    needs: create-matrices
-    strategy:
-      fail-fast: false
-      matrix:
-        version: ${{fromJson(needs.create-matrices.outputs.alpine-versions)}}
-    name: Build on Alpine Linux ${{ matrix.version }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Docker
-        uses: docker-practice/actions-setup-docker@master
-      - name: Generate Dockerfile for Alpine Linux ${{ matrix.version }}
-        run: Dockerfiles/alpine/${{ matrix.version }}/manage.sh --generate
-      - name: Run Hadolint
-        run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/hadolint/master/pipeline.sh)
-      - name: Build on Alpine Linux ${{ matrix.version }}
-        run: Dockerfiles/alpine/${{ matrix.version }}/manage.sh --build --clean
+    needs: get-git-ref
+    name: Alpine Linux
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: alpine
+      ref: ${{ needs.get-git-ref.outputs.ref }}
   amazonlinux:
-    runs-on: ubuntu-latest
-    needs: create-matrices
-    strategy:
-      fail-fast: false
-      matrix:
-        version: ${{fromJson(needs.create-matrices.outputs.amazonlinux-versions)}}
-    name: Build on Amazon Linux ${{ matrix.version }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Docker
-        uses: docker-practice/actions-setup-docker@master
-      - name: Generate Dockerfile for Amazon Linux ${{ matrix.version }}
-        run:  Dockerfiles/amazonlinux/${{ matrix.version }}/manage.sh --generate
-      - name: Run Hadolint
-        run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/hadolint/master/pipeline.sh)
-      - name: Build on Amazon Linux ${{ matrix.version }}
-        run: Dockerfiles/amazonlinux/${{ matrix.version }}/manage.sh --build --clean
+    needs: get-git-ref
+    name: Amazon Linux
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: amazonlinux
+      ref: ${{ needs.get-git-ref.outputs.ref }}
   archlinux:
-    runs-on: ubuntu-latest
-    needs: create-matrices
-    strategy:
-      fail-fast: false
-      matrix:
-        version: ${{fromJson(needs.create-matrices.outputs.archlinux-versions)}}
-    name: Build on Arch Linux ${{ matrix.version }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Docker
-        uses: docker-practice/actions-setup-docker@master
-      - name: Generate Dockerfile for Arch Linux ${{ matrix.version }}
-        run:  Dockerfiles/archlinux/${{ matrix.version }}/manage.sh --generate
-      - name: Run Hadolint
-        run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/hadolint/master/pipeline.sh)
-      - name: Build on Arch Linux ${{ matrix.version }}
-        run: Dockerfiles/archlinux/${{ matrix.version }}/manage.sh --build --clean
+    needs: get-git-ref
+    name: Arch Linux
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: archlinux
+      ref: ${{ needs.get-git-ref.outputs.ref }}
   centos:
-    runs-on: ubuntu-latest
-    needs: create-matrices
-    strategy:
-      fail-fast: false
-      matrix:
-        version: ${{fromJson(needs.create-matrices.outputs.centos-versions)}}
-    name: Build on Centos ${{ matrix.version }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Docker
-        uses: docker-practice/actions-setup-docker@master
-      - name: Generate Dockerfile for Centos ${{ matrix.version }}
-        run: Dockerfiles/centos/${{ matrix.version }}/manage.sh --generate
-      - name: Run Hadolint
-        run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/hadolint/master/pipeline.sh)
-      - name: Build on Centos ${{ matrix.version }}
-        run: Dockerfiles/centos/${{ matrix.version }}/manage.sh --build --clean
+    needs: get-git-ref
+    name: Centos
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: centos
+      ref: ${{ needs.get-git-ref.outputs.ref }}
   debian:
-    runs-on: ubuntu-latest
-    needs: create-matrices
-    strategy:
-      fail-fast: false
-      matrix:
-        version: ${{fromJson(needs.create-matrices.outputs.debian-versions)}}
-    name: Build on Debian ${{ matrix.version }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Docker
-        uses: docker-practice/actions-setup-docker@master
-      - name: Generate Dockerfile for Debian ${{ matrix.version }}
-        run: Dockerfiles/debian/${{ matrix.version }}/manage.sh --generate
-      - name: Run Hadolint
-        run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/hadolint/master/pipeline.sh)
-      - name: Build on Debian ${{ matrix.version }}
-        run: Dockerfiles/debian/${{ matrix.version }}/manage.sh --build --clean
+    needs: get-git-ref
+    name: Debian
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: debian
+      ref: ${{ needs.get-git-ref.outputs.ref }}
   oraclelinux:
-    runs-on: ubuntu-latest
-    needs: create-matrices
-    strategy:
-      fail-fast: false
-      matrix:
-        version: ${{fromJson(needs.create-matrices.outputs.oraclelinux-versions)}}
-    name: Build on Oracle Linux ${{ matrix.version }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Docker
-        uses: docker-practice/actions-setup-docker@master
-      - name: Generate Dockerfile for Oracle Linux ${{ matrix.version }}
-        run: Dockerfiles/oraclelinux/${{ matrix.version }}/manage.sh --generate
-      - name: Run Hadolint
-        run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/hadolint/master/pipeline.sh)
-      - name: Build on Oracle Linux ${{ matrix.version }}
-        run: Dockerfiles/oraclelinux/${{ matrix.version }}/manage.sh --build --clean
+    needs: get-git-ref
+    name: Oracle Linux
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: oraclelinux
+      ref: ${{ needs.get-git-ref.outputs.ref }}
   photon:
-    runs-on: ubuntu-latest
-    needs: create-matrices
-    strategy:
-      fail-fast: false
-      matrix:
-        version: ${{fromJson(needs.create-matrices.outputs.photon-versions)}}
-    name: Build on Photon ${{ matrix.version }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Docker
-        uses: docker-practice/actions-setup-docker@master
-      - name: Generate Dockerfile for Photon ${{ matrix.version }}
-        run: Dockerfiles/photon/${{ matrix.version }}/manage.sh --generate
-      - name: Run Hadolint
-        run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/hadolint/master/pipeline.sh)
-      - name: Build on Photon ${{ matrix.version }}
-        run: Dockerfiles/photon/${{ matrix.version }}/manage.sh --build --clean
+    needs: get-git-ref
+    name: Photon
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: photon
+      ref: ${{ needs.get-git-ref.outputs.ref }}
   scientificlinux:
-    runs-on: ubuntu-latest
-    needs: create-matrices
-    strategy:
-      fail-fast: false
-      matrix:
-        version: ${{fromJson(needs.create-matrices.outputs.scientificlinux-versions)}}
-    name: Build on Scientific Linux ${{ matrix.version }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Docker
-        uses: docker-practice/actions-setup-docker@master
-      - name: Generate Dockerfile for Scientific Linux ${{ matrix.version }}
-        run: Dockerfiles/sl/${{ matrix.version }}/manage.sh --generate
-      - name: Run Hadolint
-        run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/hadolint/master/pipeline.sh)
-      - name: Build on Scientific Linux ${{ matrix.version }}
-        run: Dockerfiles/sl/${{ matrix.version }}/manage.sh --build --clean
+    needs: get-git-ref
+    name: Ccientific Linux
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: scientificlinux
+      ref: ${{ needs.get-git-ref.outputs.ref }}
   ubuntu:
-    runs-on: ubuntu-latest
-    needs: create-matrices
-    strategy:
-      fail-fast: false
-      matrix:
-        version: ${{fromJson(needs.create-matrices.outputs.ubuntu-versions)}}
-    name: Build on Ubuntu ${{ matrix.version }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Docker
-        uses: docker-practice/actions-setup-docker@master
-      - name: Generate Dockerfile for Ubuntu ${{ matrix.version }}
-        run: Dockerfiles/ubuntu/${{ matrix.version }}/manage.sh --generate
-      - name: Run Hadolint
-        run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/hadolint/master/pipeline.sh)
-      - name: Build on Ubuntu ${{ matrix.version }}
-        run: Dockerfiles/ubuntu/${{ matrix.version }}/manage.sh --build --clean
+    needs: get-git-ref
+    name: Photon
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: ubuntu
+      ref: ${{ needs.get-git-ref.outputs.ref }}
   shellcheck:
     name: ShellCheck
     runs-on: ubuntu-latest
@@ -205,7 +94,6 @@ jobs:
     if: always()
     name: Slack Post Workflow Notification
     needs:
-      - shellcheck
       - alpine
       - amazonlinux
       - archlinux
@@ -215,6 +103,7 @@ jobs:
       - photon
       - scientificlinux
       - ubuntu
+      - shellcheck
     runs-on: ubuntu-latest
     steps:
       - name: Slack Post Workflow Notification
