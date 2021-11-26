@@ -78,7 +78,7 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
   ubuntu:
     needs: get-git-ref
-    name: Photon
+    name: Ubuntu
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: ubuntu
@@ -93,7 +93,7 @@ jobs:
           ref: ${{ needs.get-git-ref.outputs.ref }}
       - name: Run Shellcheck
         run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/shellcheck/master/pipeline.sh)
-  slack-workflow-status:
+  slack-message-finish:
     if: always()
     name: Slack Post Workflow Notification
     needs:
@@ -109,9 +109,9 @@ jobs:
       - shellcheck
     runs-on: ubuntu-latest
     steps:
-      - name: Slack Post Workflow Notification
-        uses: Gamesight/slack-workflow-status@master
+      - name: Slack message
+        uses: magnetikonline/action-slack-workflow-start-finish@v1
         with:
-          include_jobs: true
-          repo_token: ${{secrets.GITHUB_TOKEN}}
-          slack_webhook_url: ${{secrets.SLACK_WEBHOOK_URL}}
+          channel: '#github-actions'
+          result: ${{ join(needs.*.result,'|') }}
+          webhook-url: ${{secrets.SLACK_WEBHOOK_URL}}
