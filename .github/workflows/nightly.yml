@@ -2,166 +2,87 @@ name: nightly
 on:
   schedule:
     - cron:  '0 2 * * 2-6'
-    
+
 jobs:
+  get-git-ref:
+    name: Get Git Ref
+    runs-on: ubuntu-latest
+    outputs:
+      ref: ${{steps.get-git-ref.outputs.ref}}
+    steps:
+      - name: Checkout Repo
+        run: echo "::set-output name=ref::${{ github.ref }}"
   alpine:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        version: [ '3.11', '3.12', '3.13', '3.14', '3.15' ]
-    name: Build on Alpine Linux ${{ matrix.version }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Docker
-        uses: docker-practice/actions-setup-docker@master
-      - name: Generate Dockerfile for Alpine Linux ${{ matrix.version }}
-        run: Dockerfiles/alpine/${{ matrix.version }}/manage.sh --generate
-      - name: Run Hadolint
-        run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/hadolint/master/pipeline.sh)
-      - name: Build on Alpine Linux ${{ matrix.version }}
-        run: Dockerfiles/alpine/${{ matrix.version }}/manage.sh --build --clean
+    needs: get-git-ref
+    name: Alpine Linux
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: alpine
+      ref: ${{ needs.get-git-ref.outputs.ref }}
   amazonlinux:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        version: [ '1', '2' ]
-    name: Build on Amazon Linux ${{ matrix.version }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Docker
-        uses: docker-practice/actions-setup-docker@master
-      - name: Generate Dockerfile for Amazon Linux ${{ matrix.version }}
-        run:  Dockerfiles/amazonlinux/${{ matrix.version }}/manage.sh --generate
-      - name: Run Hadolint
-        run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/hadolint/master/pipeline.sh)
-      - name: Build on Amazon Linux ${{ matrix.version }}
-        run: Dockerfiles/amazonlinux/${{ matrix.version }}/manage.sh --build --clean
+    needs: get-git-ref
+    name: Amazon Linux
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: amazonlinux
+      ref: ${{ needs.get-git-ref.outputs.ref }}
   archlinux:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        version: [ 'base' ]
-    name: Build on Arch Linux ${{ matrix.version }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Docker
-        uses: docker-practice/actions-setup-docker@master
-      - name: Generate Dockerfile for Arch Linux ${{ matrix.version }}
-        run:  Dockerfiles/archlinux/${{ matrix.version }}/manage.sh --generate
-      - name: Run Hadolint
-        run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/hadolint/master/pipeline.sh)
-      - name: Build on Arch Linux ${{ matrix.version }}
-        run: Dockerfiles/archlinux/${{ matrix.version }}/manage.sh --build --clean
+    needs: get-git-ref
+    name: Arch Linux
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: archlinux
+      ref: ${{ needs.get-git-ref.outputs.ref }}
   centos:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        version: [ '7', '8' ]
-    name: Build on Centos ${{ matrix.version }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Docker
-        uses: docker-practice/actions-setup-docker@master
-      - name: Generate Dockerfile for Centos ${{ matrix.version }}
-        run: Dockerfiles/centos/${{ matrix.version }}/manage.sh --generate
-      - name: Run Hadolint
-        run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/hadolint/master/pipeline.sh)
-      - name: Build on Centos ${{ matrix.version }}
-        run: Dockerfiles/centos/${{ matrix.version }}/manage.sh --build --clean
+    needs: get-git-ref
+    name: Centos
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: centos
+      ref: ${{ needs.get-git-ref.outputs.ref }}
   debian:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        version: [ '9', '9-slim', '10', '10-slim', '11', '11-slim', '12', '12-slim' ]
-    name: Build on Debian ${{ matrix.version }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Docker
-        uses: docker-practice/actions-setup-docker@master
-      - name: Generate Dockerfile for Debian ${{ matrix.version }}
-        run: Dockerfiles/debian/${{ matrix.version }}/manage.sh --generate
-      - name: Run Hadolint
-        run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/hadolint/master/pipeline.sh)
-      - name: Build on Debian ${{ matrix.version }}
-        run: Dockerfiles/debian/${{ matrix.version }}/manage.sh --build --clean
+    needs: get-git-ref
+    name: Debian
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: debian
+      ref: ${{ needs.get-git-ref.outputs.ref }}
   oraclelinux:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        version: [ '7', '7-slim', '8', '8-slim' ]
-    name: Build on Oracle Linux ${{ matrix.version }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Docker
-        uses: docker-practice/actions-setup-docker@master
-      - name: Generate Dockerfile for Oracle Linux ${{ matrix.version }}
-        run: Dockerfiles/oraclelinux/${{ matrix.version }}/manage.sh --generate
-      - name: Run Hadolint
-        run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/hadolint/master/pipeline.sh)
-      - name: Build on Oracle Linux ${{ matrix.version }}
-        run: Dockerfiles/oraclelinux/${{ matrix.version }}/manage.sh --build --clean
+    needs: get-git-ref
+    name: Oracle Linux
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: oraclelinux
+      ref: ${{ needs.get-git-ref.outputs.ref }}
   photon:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        version: [ '1.0', '2.0', '3.0', '4.0' ]
-    name: Build on Photon ${{ matrix.version }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Docker
-        uses: docker-practice/actions-setup-docker@master
-      - name: Generate Dockerfile for Photon ${{ matrix.version }}
-        run: Dockerfiles/photon/${{ matrix.version }}/manage.sh --generate
-      - name: Run Hadolint
-        run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/hadolint/master/pipeline.sh)
-      - name: Build on Photon ${{ matrix.version }}
-        run: Dockerfiles/photon/${{ matrix.version }}/manage.sh --build --clean
-  sl:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        version: [ '7' ]
-    name: Build on Scientific Linux ${{ matrix.version }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Docker
-        uses: docker-practice/actions-setup-docker@master
-      - name: Generate Dockerfile for Scientific Linux ${{ matrix.version }}
-        run: Dockerfiles/sl/${{ matrix.version }}/manage.sh --generate
-      - name: Run Hadolint
-        run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/hadolint/master/pipeline.sh)
-      - name: Build on Scientific Linux ${{ matrix.version }}
-        run: Dockerfiles/sl/${{ matrix.version }}/manage.sh --build --clean
+    needs: get-git-ref
+    name: Photon
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: photon
+      ref: ${{ needs.get-git-ref.outputs.ref }}
+  scientificlinux:
+    needs: get-git-ref
+    name: Scientific Linux
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: sl
+      ref: ${{ needs.get-git-ref.outputs.ref }}
   ubuntu:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        version: [ '14.04', '16.04', '18.04', '20.04', '22.04' ]
-    name: Build on Ubuntu ${{ matrix.version }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Docker
-        uses: docker-practice/actions-setup-docker@master
-      - name: Generate Dockerfile for Ubuntu ${{ matrix.version }}
-        run: Dockerfiles/ubuntu/${{ matrix.version }}/manage.sh --generate
-      - name: Run Hadolint
-        run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/hadolint/master/pipeline.sh)
-      - name: Build on Ubuntu ${{ matrix.version }}
-        run: Dockerfiles/ubuntu/${{ matrix.version }}/manage.sh --build --clean
+    needs: get-git-ref
+    name: Ubuntu
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: ubuntu
+      ref: ${{ needs.get-git-ref.outputs.ref }}
   awesomebot:
+    needs: get-git-ref
     name: Awesomebot
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ needs.get-git-ref.outputs.ref }}
       - name: Set up Ruby 3.0
         uses: ruby/setup-ruby@v1
         with:
@@ -173,24 +94,30 @@ jobs:
           WHITELIST: "https://img.shields.io"
         run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/awesomebot/master/pipeline.sh)
   shellcheck:
+    needs: get-git-ref
     name: ShellCheck
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ needs.get-git-ref.outputs.ref }}
       - name: Run Shellcheck
         run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/shellcheck/master/pipeline.sh)
   yaml-lint:
+    needs: get-git-ref
     name: YAML Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ needs.get-git-ref.outputs.ref }}
       - name: Set up Ruby 3.0
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.0
       - name: Run YAML-Lint
         run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/yaml-lint/master/pipeline.sh)
-  slack-workflow-status:
+  slack-message-finish:
     if: always()
     name: Slack Post Workflow Notification
     needs:
@@ -201,16 +128,16 @@ jobs:
       - debian
       - oraclelinux
       - photon
-      - sl
+      - scientificlinux
       - ubuntu
       - awesomebot
       - shellcheck
       - yaml-lint
     runs-on: ubuntu-latest
     steps:
-      - name: Slack Post Workflow Notification
-        uses: Gamesight/slack-workflow-status@master
+      - name: Slack message
+        uses: magnetikonline/action-slack-workflow-start-finish@v1
         with:
-          include_jobs: true
-          repo_token: ${{secrets.GITHUB_TOKEN}}
-          slack_webhook_url: ${{secrets.SLACK_WEBHOOK_URL}}
+          channel: '#github-actions'
+          result: ${{ join(needs.*.result,'|') }}
+          webhook-url: ${{secrets.SLACK_WEBHOOK_URL}}
