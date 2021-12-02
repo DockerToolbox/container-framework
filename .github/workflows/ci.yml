@@ -128,5 +128,5 @@ jobs:
         uses: come25136/workflow-notification-for-slack@main
         with:
           repo_token: ${{secrets.GITHUB_TOKEN}}
-          lack_webhook_url: ${{secrets.SLACK_WEBHOOK_URL}}
+          slack_webhook_url: ${{secrets.SLACK_WEBHOOK_URL}}
           include_jobs: on-failure
