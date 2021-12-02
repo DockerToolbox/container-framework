@@ -110,8 +110,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Slack message
-        uses: magnetikonline/action-slack-workflow-start-finish@v1
+        uses: come25136/workflow-notification-for-slack@main
         with:
-          channel: '#github-actions'
           result: ${{ join(needs.*.result,'|') }}
           webhook-url: ${{secrets.SLACK_WEBHOOK_URL}}
+          include_jobs: on-failure
