@@ -93,6 +93,20 @@ jobs:
           ref: ${{ needs.get-git-ref.outputs.ref }}
       - name: Run Shellcheck
         run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/shellcheck/master/pipeline.sh)
+  yaml-lint:
+    needs: get-git-ref
+    name: YAML Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ needs.get-git-ref.outputs.ref }}
+      - name: Set up Ruby 3.0
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0
+      - name: Run YAML-Lint
+        run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/yaml-lint/master/pipeline.sh)
   slack-message-finish:
     if: always()
     name: Slack Post Workflow Notification
@@ -107,11 +121,12 @@ jobs:
       - scientificlinux
       - ubuntu
       - shellcheck
+      - yaml-lint
     runs-on: ubuntu-latest
     steps:
       - name: Slack message
         uses: come25136/workflow-notification-for-slack@main
         with:
-          result: ${{ join(needs.*.result,'|') }}
-          webhook-url: ${{secrets.SLACK_WEBHOOK_URL}}
+          repo_token: ${{secrets.GITHUB_TOKEN}}
+          lack_webhook_url: ${{secrets.SLACK_WEBHOOK_URL}}
           include_jobs: on-failure
