@@ -18,7 +18,7 @@ jobs:
     outputs:
       ref: ${{steps.get-git-ref.outputs.ref}}
     steps:
-      - name: Checkout Repo
+      - name: Get Git Ref
         run: echo "::set-output name=ref::${{ github.ref }}"
   alpine:
     needs: get-git-ref

@@ -8,10 +8,11 @@ jobs:
     name: Get Git Ref
     runs-on: ubuntu-latest
     outputs:
-      ref: ${{steps.get-git-ref.outputs.ref}}
+      ref: ${{ steps.get-latest-tag.outputs.tag }}
     steps:
-      - name: Checkout Repo
-        run: echo "::set-output name=ref::${{ github.ref }}"
+      - name: Get latest tag
+        uses: actions-ecosystem/action-get-latest-tag@v1
+        id: get-latest-tag
   alpine:
     needs: get-git-ref
     name: Alpine Linux
