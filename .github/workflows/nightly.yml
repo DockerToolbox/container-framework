@@ -1,7 +1,7 @@
 name: nightly
 on:
   schedule:
-    - cron:  '0 2 * * 2-6'
+    - cron:  '30 0 * * 2-6'
 
 jobs:
   get-git-ref:
@@ -136,8 +136,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Slack message
-        uses: magnetikonline/action-slack-workflow-start-finish@v1
+        uses: come25136/workflow-notification-for-slack@main
         with:
-          channel: '#github-actions'
-          result: ${{ join(needs.*.result,'|') }}
-          webhook-url: ${{secrets.SLACK_WEBHOOK_URL}}
+          repo_token: ${{secrets.GITHUB_TOKEN}}
+          slack_webhook_url: ${{secrets.SLACK_WEBHOOK_URL}}
+          include_jobs: on-failure
