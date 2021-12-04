@@ -285,7 +285,7 @@ function build_container()
 function scan_container()
 {
     info "Scanning: ${LOCAL_CONTAINER_NAME}"
-    docker scan "${LOCAL_CONTAINER_NAME}"
+    yes | docker scan "${LOCAL_CONTAINER_NAME}"
     info "Complete"
 }
 
