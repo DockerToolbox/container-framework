@@ -7,7 +7,9 @@ This changelog was automatically generated using [Caretaker](https://github.com/
 
 ### [Unreleased](https://github.com/DockerToolbox/container-framework/compare/v0.1.0...HEAD)
 
-- Update to autoacept for scanning [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
+- Update workflows [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
+
+- Update to autoacept for scanning [`[b8c199f]`](https://github.com/DockerToolbox/container-framework/commit/b8c199fd5baae8f25423499c87c7591c6681d68d)
 
 - Composite [`[c86f4d5]`](https://github.com/DockerToolbox/container-framework/commit/c86f4d57a391caaa4ad0620d3c6bf630cc04e100)
 
