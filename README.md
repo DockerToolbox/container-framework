@@ -292,3 +292,6 @@ We do supply Dockerfiles within the repository, these Dockerfiles are dynamicall
 ```
 ./manage-all.sh --publish [ --ghcr ]
 ```
+
+
+## WorkFlows
