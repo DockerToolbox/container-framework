@@ -16,6 +16,6 @@ jobs:
 #        run: bundle update --bundler && bundle install
         run: bundle install
       - name: Run script
-        run: bashcov manage-all.sh
+        run: bashcov Scripts/core.sh
       - name: Upload reports to Codecov
         run: bash <(curl -s https://codecov.io/bash) -t ${{secrets.CODECOV_TOKEN}}
