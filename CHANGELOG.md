@@ -9,6 +9,8 @@ This changelog was automatically generated using [Caretaker](https://github.com/
 
 - Add code coverage [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
 
+- Add code coverage [`[781d095]`](https://github.com/DockerToolbox/container-framework/commit/781d0957031d2b7acaa9f3c138891251e799ed55)
+
 - Add code coverage [`[2d79108]`](https://github.com/DockerToolbox/container-framework/commit/2d7910823dedd9bf49c676d4079b50039f77b1a7)
 
 - Add code coverage [`[c51f47f]`](https://github.com/DockerToolbox/container-framework/commit/c51f47ff7cad0c07b09ecbb46eacd8b31a0d89ee)
