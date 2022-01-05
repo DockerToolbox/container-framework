@@ -17,7 +17,4 @@ jobs:
       - name: Run script
         run: bashcov manage-all.sh
       - name: Upload reports to Codecov
-        run: |
-          curl -Os https://uploader.codecov.io/latest/linux/codecov
-          chmod +x codecov
-          ./codecov -f coverage/codecov-result.json -Z
+        run: bash <(curl -s https://codecov.io/bash) -t ${{secrets.CODECOV_TOKEN}}
