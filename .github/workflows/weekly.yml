@@ -14,6 +14,13 @@ jobs:
       - name: Get latest tag
         uses: actions-ecosystem/action-get-latest-tag@v1
         id: get-latest-tag
+  almalinux:
+    needs: get-git-ref
+    name: Alma Linux
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: almalinux
+      ref: ${{ needs.get-git-ref.outputs.ref }}
   alpine:
     needs: get-git-ref
     name: Alpine Linux
@@ -130,6 +137,7 @@ jobs:
     if: always()
     name: Slack Post Workflow Notification
     needs:
+      - almalinux
       - alpine
       - amazonlinux
       - archlinux

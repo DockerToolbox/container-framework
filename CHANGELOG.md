@@ -7,7 +7,9 @@ This changelog was automatically generated using [Caretaker](https://github.com/
 
 ### [Unreleased](https://github.com/DockerToolbox/container-framework/compare/v0.1.0...HEAD)
 
-- Update readme [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
+- Added support for alma linux [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
+
+- Update readme [`[920d35c]`](https://github.com/DockerToolbox/container-framework/commit/920d35c898b32db5744d259a76412f93cc600331)
 
 - Fixed centos 8 issue and added Rocky Linux support [`[dc02fbf]`](https://github.com/DockerToolbox/container-framework/commit/dc02fbfcfd8b64db736c90a68113d628fc9fb3a9)
 
