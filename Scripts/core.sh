@@ -228,10 +228,20 @@ function generate_container()
     ensure_version_grabber
 
     #
+    # Add custom run commands
+    #
+    RUN_CMDS=""
+    if [[ "${CONTAINER_OS_NAME}" == "centos" ]] && [[ "${CONTAINER_OS_VERSION}" == "8" ]]; then
+        RUN_CMDS="\tsed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-Linux-* && \\ \n"
+        RUN_CMDS+="\tsed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-Linux-* && \\ \n"
+    fi
+    #
     # Calculate the package versions
     #
     # shellcheck disable=2034
     PACKAGES=$("${GET_VERSIONS}" -g "${VERSION_GRABBER}" -p -c "${REPO_ROOT}/Config/packages.cfg" -o "${CONTAINER_OS_NAME}" -t "${CONTAINER_OS_VERSION_ALT}" -s "${container_shell}")
+
+    PACKAGES="${RUN_CMDS}${PACKAGES}"
 
     #
     # Load in the main install template

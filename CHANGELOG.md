@@ -7,7 +7,9 @@ This changelog was automatically generated using [Caretaker](https://github.com/
 
 ### [Unreleased](https://github.com/DockerToolbox/container-framework/compare/v0.1.0...HEAD)
 
-- Remove code coverage [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
+- Fixed centos 8 issue and added Rocky Linux support [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
+
+- Remove code coverage [`[f8b02a7]`](https://github.com/DockerToolbox/container-framework/commit/f8b02a7587090f877cf477e696c2b4c13fe5142d)
 
 - Add code coverage [`[e75949e]`](https://github.com/DockerToolbox/container-framework/commit/e75949ef7598098d29c5c757a96958cef5ba2f7d)
 

@@ -63,6 +63,13 @@ jobs:
     with:
       directory: photon
       ref: ${{ needs.get-git-ref.outputs.ref }}
+  rockylinux:
+    needs: get-git-ref
+    name: Rocky Linux
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: rockylinux
+      ref: ${{ needs.get-git-ref.outputs.ref }}
   scientificlinux:
     needs: get-git-ref
     name: Scientific Linux
@@ -130,6 +137,7 @@ jobs:
       - debian
       - oraclelinux
       - photon
+      - rockylinux
       - scientificlinux
       - ubuntu
       - awesomebot
