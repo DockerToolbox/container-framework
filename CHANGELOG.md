@@ -9,6 +9,8 @@ This changelog was automatically generated using [Caretaker](https://github.com/
 
 - Fix CoC links [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
 
+- Fix CoC links [`[ccc2ed0]`](https://github.com/DockerToolbox/container-framework/commit/ccc2ed084663c41f08f4e1d2ebd4642f7a50c926)
+
 - Added support for alma linux [`[cbbed91]`](https://github.com/DockerToolbox/container-framework/commit/cbbed91000e9a31b990e734cb78105a8500f4121)
 
 - Update readme [`[920d35c]`](https://github.com/DockerToolbox/container-framework/commit/920d35c898b32db5744d259a76412f93cc600331)
