@@ -5,9 +5,15 @@ All notable changes to this project will be documented in this file.
 
 This changelog was automatically generated using [Caretaker](https://github.com/DevelopersToolbox/caretaker) by [Wolf Software](https://github.com/WolfSoftware)
 
-### [Unreleased](https://github.com/DockerToolbox/container-framework/compare/v0.1.0...HEAD)
+### [Unreleased](https://github.com/DockerToolbox/container-framework/compare/v0.1.1...HEAD)
 
-- Fix CoC links [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
+- Add concurreny limits [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
+
+### [v0.1.0](https://github.com/DockerToolbox/container-framework/releases/v0.1.0)
+
+> Released on February, 10th 2022
+
+- Fix CoC links [`[117615d]`](https://github.com/DockerToolbox/container-framework/commit/117615dea465acae3faf5c60285276c854881e81)
 
 - Fix CoC links [`[ccc2ed0]`](https://github.com/DockerToolbox/container-framework/commit/ccc2ed084663c41f08f4e1d2ebd4642f7a50c926)
 
