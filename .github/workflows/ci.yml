@@ -11,6 +11,10 @@ on:
     branches:
       - master
 
+concurrency: 
+  group: ${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
 jobs:
   get-git-ref:
     name: Get Git Ref
@@ -21,9 +25,6 @@ jobs:
       - name: Get Git Ref
         run: echo "::set-output name=ref::${{ github.ref }}"
   almalinux:
-    concurrency: 
-      group: almalinux
-      cancel-in-progress: true
     needs: get-git-ref
     name: Alma Linux
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
@@ -31,9 +32,6 @@ jobs:
       directory: almalinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
   alpine:
-    concurrency: 
-      group: alpine
-      cancel-in-progress: true
     needs: get-git-ref
     name: Alpine Linux
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
@@ -41,9 +39,6 @@ jobs:
       directory: alpine
       ref: ${{ needs.get-git-ref.outputs.ref }}
   amazonlinux:
-    concurrency: 
-      group: amazonlinux
-      cancel-in-progress: true
     needs: get-git-ref
     name: Amazon Linux
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
@@ -51,9 +46,6 @@ jobs:
       directory: amazonlinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
   archlinux:
-    concurrency: 
-      group: archlinux
-      cancel-in-progress: true
     needs: get-git-ref
     name: Arch Linux
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
@@ -61,9 +53,6 @@ jobs:
       directory: archlinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
   centos:
-    concurrency: 
-      group: centos
-      cancel-in-progress: true
     needs: get-git-ref
     name: Centos
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
@@ -71,9 +60,6 @@ jobs:
       directory: centos
       ref: ${{ needs.get-git-ref.outputs.ref }}
   debian:
-    concurrency: 
-      group: debian
-      cancel-in-progress: true
     needs: get-git-ref
     name: Debian
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
@@ -81,9 +67,6 @@ jobs:
       directory: debian
       ref: ${{ needs.get-git-ref.outputs.ref }}
   oraclelinux:
-    concurrency: 
-      group: oraclelinux
-      cancel-in-progress: true
     needs: get-git-ref
     name: Oracle Linux
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
@@ -91,9 +74,6 @@ jobs:
       directory: oraclelinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
   photon:
-    concurrency: 
-      group: photon
-      cancel-in-progress: true
     needs: get-git-ref
     name: Photon
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
@@ -101,9 +81,6 @@ jobs:
       directory: photon
       ref: ${{ needs.get-git-ref.outputs.ref }}
   rockylinux:
-    concurrency: 
-      group: rockylinux
-      cancel-in-progress: true
     needs: get-git-ref
     name: Rocky Linux
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
@@ -111,9 +88,6 @@ jobs:
       directory: rockylinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
   scientificlinux:
-    concurrency: 
-      group: scientificlinux
-      cancel-in-progress: true
     needs: get-git-ref
     name: Scientific Linux
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
@@ -121,9 +95,6 @@ jobs:
       directory: sl
       ref: ${{ needs.get-git-ref.outputs.ref }}
   ubuntu:
-    concurrency: 
-      group: ubuntu
-      cancel-in-progress: true
     needs: get-git-ref
     name: Ubuntu
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
