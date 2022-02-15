@@ -34,6 +34,7 @@ jobs:
     with:
       directory: alpine
       ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 2
   amazonlinux:
     needs: get-git-ref
     name: Amazon Linux
@@ -62,6 +63,7 @@ jobs:
     with:
       directory: debian
       ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 2
   oraclelinux:
     needs: get-git-ref
     name: Oracle Linux
@@ -76,6 +78,7 @@ jobs:
     with:
       directory: photon
       ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 2
   rockylinux:
     needs: get-git-ref
     name: Rocky Linux
@@ -97,6 +100,7 @@ jobs:
     with:
       directory: ubuntu
       ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 2
   shellcheck:
     needs: get-git-ref
     name: ShellCheck
