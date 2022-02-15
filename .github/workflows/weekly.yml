@@ -22,13 +22,6 @@ jobs:
       directory: alpine
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 2
-  amazonlinux:
-    needs: get-git-ref
-    name: Amazon Linux
-    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
-    with:
-      directory: amazonlinux
-      ref: ${{ needs.get-git-ref.outputs.ref }}
   archlinux:
     needs: get-git-ref
     name: Arch Linux
@@ -51,14 +44,6 @@ jobs:
       directory: debian
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 4
-  oraclelinux:
-    needs: get-git-ref
-    name: Oracle Linux
-    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
-    with:
-      directory: oraclelinux
-      ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 2
   rockylinux:
     needs: get-git-ref
     name: Rocky Linux
@@ -121,11 +106,9 @@ jobs:
     name: Slack Post Workflow Notification
     needs:
       - alpine
-      - amazonlinux
       - archlinux
       - centos
       - debian
-      - oraclelinux
       - rockylinux
       - ubuntu
       - awesomebot

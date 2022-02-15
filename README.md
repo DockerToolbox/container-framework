@@ -39,16 +39,14 @@ It will combine all of the above configuration to generate the required Dockerfi
 
 ## Supported Operating Systems
 
-| Operating System | Versions                           | Docker Hub                                             | Notes   |
-| ---------------- | ---------------------------------- | ------------------------------------------------------ | ------- |
-| Alpine           | 3.12, 3.13, 3.14 & 3.15            | [Official Image](https://hub.docker.com/_/alpine)      |         |
-| Amazon Linux     | 1 & 2                              | [Official Image](https://hub.docker.com/_/amazonlinux) |         |
-| Arch Linux       | base                               | [Official Image](https://hub.docker.com/_/archlinux)   |         |
-| Centos           | 7 & 8                              | [Official Image](https://hub.docker.com/_/centos)      | Now EOL |
-| Debian           | 9, 10, 11 & 12 (full & slim)       | [Official Image](https://hub.docker.com/_/debian)      |         |
-| Oracle Linux     | 7 & 8 (full & slim)                | [Official Image](https://hub.docker.com/_/oraclelinux) |         |
-| Rocky Linux      | 8                                  | [Official Image](https://hub.docker.com/_/rockylinux)  |         |
-| Ubuntu           | 14.04, 16.04, 18.04, 20.04 & 22.04 | [Official Image](https://hub.docker.com/_/ubuntu)      |         |
+| Operating System | Versions                           | Docker Hub                                             |
+| ---------------- | ---------------------------------- | ------------------------------------------------------ |
+| Alpine           | 3.12, 3.13, 3.14 & 3.15            | [Official Image](https://hub.docker.com/_/alpine)      |
+| Arch Linux       | base                               | [Official Image](https://hub.docker.com/_/archlinux)   |
+| Centos           | 7                                  | [Official Image](https://hub.docker.com/_/centos)      |
+| Debian           | 9, 10, 11 & 12 (full & slim)       | [Official Image](https://hub.docker.com/_/debian)      |
+| Rocky Linux      | 8                                  | [Official Image](https://hub.docker.com/_/rockylinux)  |
+| Ubuntu           | 14.04, 16.04, 18.04, 20.04 & 22.04 | [Official Image](https://hub.docker.com/_/ubuntu)      |
 
 ## Naming convention
 
@@ -79,14 +77,10 @@ Dockerfiles
   │   ├── 3.13
   │   ├── 3.14
   │   └── 3.15
-  ├── amazonlinux
-  │   ├── 1
-  │   └── 2
   ├── archlinux
   │   └── base
   ├── centos
-  │   ├── 7
-  │   └── 8
+  │   └── 7
   ├── debian
   │   ├── 9
   │   ├── 9-slim
@@ -96,11 +90,6 @@ Dockerfiles
   │   ├── 11-slim
   │   ├── 12
   │   └── 12-slim
-  ├── oraclelinux
-  │   ├── 7
-  │   ├── 7-slim
-  │   ├── 8
-  │   └── 8-slim
   ├── rockylinux
   │   └── 8
   └── ubuntu
@@ -159,10 +148,9 @@ APK_PACKAGES=                   # Alpine Packages
 APK_VIRTUAL_PACKAGE=            # Alpine Virtual Packages (These are not versioned) 
 APT_PACKAGES=                   # Debian / Ubuntu Packages
 PACMAN_PACKAGES=                # Arch Linux
-YUM_PACKAGES=                   # Amazon Linux / Centos / Oracle Linux / Rocky Linux
+YUM_PACKAGES=                   # Centos / Rocky Linux
 YUM_GROUPS=                     # Yum Groups
 ```
-> Oracle Linux 8 slim comes with `microdnf` instead of `yum` but we simply install yum using `microdnf` and then carry on as normal.
 
 #### Operating System Based
 
@@ -170,11 +158,9 @@ YUM_GROUPS=                     # Yum Groups
 DISCOVER_BY=OS                  # Tell the version-grabber to use Operating System ID instead of package manager
 ALPINE_PACKAGES=                # Alpine Packages
 ALPINE_VIRTUAL_PACKAGES=        # Alpine Virtual Packages (These are not versioned)
-AMAZON_PACKAGES=                # Amazon Linux Packages
 ARCH_PACKAGES=                  # Arch Linux Packages
 CENTOS_PACKAGES=                # Centos Packages
 DEBIAN_PACKAGES=                # Debian Packages
-ORACLE_PACKAGES=                # Oracle Linux Packages
 ROCKY_PACKAGES=                 # Rocky Linux Packages
 UBUNTU_PACKAGES=                # Ubuntu Packages
 ```
@@ -229,14 +215,13 @@ The same file is used for all the containers and the valuables as substituted wh
 
 There is a cleanup symlink in each container directory which points to the correct cleanup script, this removes any packages that are no longer required and also removes packages caches and other general good practice cleanup operations.
 
-| File                        | Purpose                                                                                             |
-| --------------------------- | --------------------------------------------------------------------------------------------------- |
-| apk-cleanup.tpl             | Cleanup for Alpine based containers.                                                                |
-| apt-cleanup.tpl             | Cleanup for Debian / Ubuntu based containers.                                                       |
-| microdns-cleanup.tpl        | Cleanup for Oracle Linux 8-slim based containers.                                                   |
-| pacman-cleanup.tpl          | Cleanup for Arch Linux based containers.                                                            |
-| yum-cleanup-with-leaves.tpl | Cleanup for Amazon Linux, Centos 7 & Oracle Linux 6 based containers.                               |
-| yum-cleanup.tpl             | Cleanup for Centos 8+ (excluding 8-sim) & Oracle Linux 7+ Rocky Linux based containers.             |
+| File                        | Purpose                                       |
+| --------------------------- | --------------------------------------------- |
+| apk-cleanup.tpl             | Cleanup for Alpine based containers.          |
+| apt-cleanup.tpl             | Cleanup for Debian / Ubuntu based containers. |
+| pacman-cleanup.tpl          | Cleanup for Arch Linux based containers.      |
+| yum-cleanup-with-leaves.tpl | Cleanup for Centos 7.                         |
+| yum-cleanup.tpl             | Cleanup for Rocky Linux based containers.     |
 
 ### Helper Script
 
