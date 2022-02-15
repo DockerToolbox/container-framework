@@ -41,16 +41,13 @@ It will combine all of the above configuration to generate the required Dockerfi
 
 | Operating System | Versions                           | Docker Hub                                             | Notes   |
 | ---------------- | ---------------------------------- | ------------------------------------------------------ | ------- |
-| Alma Linux       | 8                                  | [Official Image](https://hub.docker.com/_/almalinux)   |         |
-| Alpine           | 3.11, 3.12, 3.13, 3.14 & 3.15      | [Official Image](https://hub.docker.com/_/alpine)      |         |
+| Alpine           | 3.12, 3.13, 3.14 & 3.15            | [Official Image](https://hub.docker.com/_/alpine)      |         |
 | Amazon Linux     | 1 & 2                              | [Official Image](https://hub.docker.com/_/amazonlinux) |         |
 | Arch Linux       | base                               | [Official Image](https://hub.docker.com/_/archlinux)   |         |
 | Centos           | 7 & 8                              | [Official Image](https://hub.docker.com/_/centos)      | Now EOL |
 | Debian           | 9, 10, 11 & 12 (full & slim)       | [Official Image](https://hub.docker.com/_/debian)      |         |
 | Oracle Linux     | 7 & 8 (full & slim)                | [Official Image](https://hub.docker.com/_/oraclelinux) |         |
-| Photon           | 1.0, 2.0, 3.0 & 4.0                | [Official Image](https://hub.docker.com/_/photon)      |         |
 | Rocky Linux      | 8                                  | [Official Image](https://hub.docker.com/_/rockylinux)  |         |
-| Scientific Linux | 7                                  | [Official Image](https://hub.docker.com/_/sl)          |         |
 | Ubuntu           | 14.04, 16.04, 18.04, 20.04 & 22.04 | [Official Image](https://hub.docker.com/_/ubuntu)      |         |
 
 ## Naming convention
@@ -77,10 +74,7 @@ The container names are dynamically generated based on the directory tree. All o
 
 ```
 Dockerfiles
-  ├── almalinux
-  │   └── 8
   ├── alpine
-  │   ├── 3.11
   │   ├── 3.12
   │   ├── 3.13
   │   ├── 3.14
@@ -107,15 +101,8 @@ Dockerfiles
   │   ├── 7-slim
   │   ├── 8
   │   └── 8-slim
-  ├── photon
-  │   ├── 1.0
-  │   ├── 2.0
-  │   ├── 3.0
-  │   └── 4.0
   ├── rockylinux
   │   └── 8
-  ├── sl
-  │   └── 7
   └── ubuntu
       ├── 14.04
       ├── 16.04
@@ -151,7 +138,6 @@ The second half only needs to be touched if you are planning to create container
 
 ```
 Dockerfiles
-  ├── 3.11
   ├── 3.12
   ├── 3.13
   ├── 3.14
@@ -173,8 +159,7 @@ APK_PACKAGES=                   # Alpine Packages
 APK_VIRTUAL_PACKAGE=            # Alpine Virtual Packages (These are not versioned) 
 APT_PACKAGES=                   # Debian / Ubuntu Packages
 PACMAN_PACKAGES=                # Arch Linux
-TDNF_PACKAGES=                  # Photon Packages
-YUM_PACKAGES=                   # Alma Linux / Amazon Linux / Centos / Oracle Linux / Rocky Linux / Scientific Linux
+YUM_PACKAGES=                   # Amazon Linux / Centos / Oracle Linux / Rocky Linux
 YUM_GROUPS=                     # Yum Groups
 ```
 > Oracle Linux 8 slim comes with `microdnf` instead of `yum` but we simply install yum using `microdnf` and then carry on as normal.
@@ -183,7 +168,6 @@ YUM_GROUPS=                     # Yum Groups
 
 ```
 DISCOVER_BY=OS                  # Tell the version-grabber to use Operating System ID instead of package manager
-ALMA_PACKAGES=                  # Alma Linux Packages
 ALPINE_PACKAGES=                # Alpine Packages
 ALPINE_VIRTUAL_PACKAGES=        # Alpine Virtual Packages (These are not versioned)
 AMAZON_PACKAGES=                # Amazon Linux Packages
@@ -191,9 +175,7 @@ ARCH_PACKAGES=                  # Arch Linux Packages
 CENTOS_PACKAGES=                # Centos Packages
 DEBIAN_PACKAGES=                # Debian Packages
 ORACLE_PACKAGES=                # Oracle Linux Packages
-PHOTON_PACKAGES=                # Photon Linux Packages
 ROCKY_PACKAGES=                 # Rocky Linux Packages
-SCIENTIFIC_PACKAGES=            # Scientific Linux Packages
 UBUNTU_PACKAGES=                # Ubuntu Packages
 ```
 
@@ -253,9 +235,8 @@ There is a cleanup symlink in each container directory which points to the corre
 | apt-cleanup.tpl             | Cleanup for Debian / Ubuntu based containers.                                                       |
 | microdns-cleanup.tpl        | Cleanup for Oracle Linux 8-slim based containers.                                                   |
 | pacman-cleanup.tpl          | Cleanup for Arch Linux based containers.                                                            |
-| tdnf-cleanup.tpl            | Cleanup for Photon Linux based containers.                                                          |
 | yum-cleanup-with-leaves.tpl | Cleanup for Amazon Linux, Centos 7 & Oracle Linux 6 based containers.                               |
-| yum-cleanup.tpl             | Cleanup for Alma Linux, Centos 8+ (excluding 8-sim) & Oracle Linux 7+ Rocky Linux based containers. |
+| yum-cleanup.tpl             | Cleanup for Centos 8+ (excluding 8-sim) & Oracle Linux 7+ Rocky Linux based containers.             |
 
 ### Helper Script
 

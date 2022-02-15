@@ -7,7 +7,9 @@ This changelog was automatically generated using [Caretaker](https://github.com/
 
 ### [Unreleased](https://github.com/DockerToolbox/container-framework/compare/v0.1.1...HEAD)
 
-- Update all workflows [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
+- Clean up and remove unsupported OSs [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
+
+- Update all workflows [`[36197b6]`](https://github.com/DockerToolbox/container-framework/commit/36197b62a4ccd1b90b03896422ccd1ccdbc27c46)
 
 - use new limited workedflow [`[a023172]`](https://github.com/DockerToolbox/container-framework/commit/a0231726780c0ccc2e4d988458f030d40d29b238)
 

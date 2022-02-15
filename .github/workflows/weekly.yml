@@ -14,13 +14,6 @@ jobs:
       - name: Get latest tag
         uses: actions-ecosystem/action-get-latest-tag@v1
         id: get-latest-tag
-  almalinux:
-    needs: get-git-ref
-    name: Alma Linux
-    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
-    with:
-      directory: almalinux
-      ref: ${{ needs.get-git-ref.outputs.ref }}
   alpine:
     needs: get-git-ref
     name: Alpine Linux
@@ -66,27 +59,12 @@ jobs:
       directory: oraclelinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 2
-  photon:
-    needs: get-git-ref
-    name: Photon
-    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
-    with:
-      directory: photon
-      ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 2
   rockylinux:
     needs: get-git-ref
     name: Rocky Linux
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: rockylinux
-      ref: ${{ needs.get-git-ref.outputs.ref }}
-  scientificlinux:
-    needs: get-git-ref
-    name: Scientific Linux
-    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
-    with:
-      directory: sl
       ref: ${{ needs.get-git-ref.outputs.ref }}
   ubuntu:
     needs: get-git-ref
@@ -142,16 +120,13 @@ jobs:
     if: always()
     name: Slack Post Workflow Notification
     needs:
-      - almalinux
       - alpine
       - amazonlinux
       - archlinux
       - centos
       - debian
       - oraclelinux
-      - photon
       - rockylinux
-      - scientificlinux
       - ubuntu
       - awesomebot
       - shellcheck
