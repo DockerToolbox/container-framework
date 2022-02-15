@@ -9,6 +9,8 @@ This changelog was automatically generated using [Caretaker](https://github.com/
 
 - Playing [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
 
+- Playing [`[8fcb1e4]`](https://github.com/DockerToolbox/container-framework/commit/8fcb1e439801e3e630d468f6820788fa40c1f217)
+
 - Add concurreny limits [`[96c925c]`](https://github.com/DockerToolbox/container-framework/commit/96c925cb00a507f62183278020863e7892b1f0e6)
 
 - Add concurreny limits [`[e60443b]`](https://github.com/DockerToolbox/container-framework/commit/e60443b60ada82562ce864d624d320561a786d01)
