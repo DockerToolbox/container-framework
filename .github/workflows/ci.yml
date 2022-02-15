@@ -28,70 +28,70 @@ jobs:
       directory: almalinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
   alpine:
-    needs: [ get-git-ref, almalinux]
+    needs: get-git-ref
     name: Alpine Linux
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: alpine
       ref: ${{ needs.get-git-ref.outputs.ref }}
   amazonlinux:
-    needs: [ get-git-ref, alpine ]
+    needs: get-git-ref
     name: Amazon Linux
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: amazonlinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
   archlinux:
-    needs: [ get-git-ref, amazonlinux ]
+    needs: get-git-ref
     name: Arch Linux
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: archlinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
   centos:
-    needs: [ get-git-ref, archlinux ]
+    needs: get-git-ref
     name: Centos
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: centos
       ref: ${{ needs.get-git-ref.outputs.ref }}
   debian:
-    needs: [ get-git-ref, centos ]
+    needs: get-git-ref
     name: Debian
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: debian
       ref: ${{ needs.get-git-ref.outputs.ref }}
   oraclelinux:
-    needs: [ get-git-ref, debian ]
+    needs: get-git-ref
     name: Oracle Linux
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: oraclelinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
   photon:
-    needs: [ get-git-ref, oraclelinux ]
+    needs: get-git-ref
     name: Photon
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: photon
       ref: ${{ needs.get-git-ref.outputs.ref }}
   rockylinux:
-    needs: [ get-git-ref, photon ]
+    needs: get-git-ref
     name: Rocky Linux
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: rockylinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
   scientificlinux:
-    needs: [ get-git-ref, rockylinux ]
+    needs: get-git-ref
     name: Scientific Linux
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: sl
       ref: ${{ needs.get-git-ref.outputs.ref }}
   ubuntu:
-    needs: [ get-git-ref, scientificlinux ]
+    needs: get-git-ref
     name: Ubuntu
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
