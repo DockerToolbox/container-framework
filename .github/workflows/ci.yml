@@ -63,7 +63,7 @@ jobs:
     with:
       directory: debian
       ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 2
+      max-parallel: 4
   oraclelinux:
     needs: get-git-ref
     name: Oracle Linux
@@ -71,6 +71,7 @@ jobs:
     with:
       directory: oraclelinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 2
   photon:
     needs: get-git-ref
     name: Photon

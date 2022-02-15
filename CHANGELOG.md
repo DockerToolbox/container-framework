@@ -9,6 +9,8 @@ This changelog was automatically generated using [Caretaker](https://github.com/
 
 - use new limited workedflow [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
 
+- use new limited workedflow [`[5f2aaee]`](https://github.com/DockerToolbox/container-framework/commit/5f2aaee9c6f275c4df23eb06137ce46965e59925)
+
 - use new limited workedflow [`[fee6f55]`](https://github.com/DockerToolbox/container-framework/commit/fee6f55c0b2fd2dbbca27008f2d6f135a33d93b0)
 
 - Playing [`[b88e04b]`](https://github.com/DockerToolbox/container-framework/commit/b88e04baa5041b6a498494ccdf044495bde0f557)
