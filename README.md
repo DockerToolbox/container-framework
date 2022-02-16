@@ -33,11 +33,13 @@
 
 ## Overview
 
-This is a simple but comprehensive container framework for generating a selection of docker containers with the same configuration. It uses a [core](Scripts/core.sh) controller script along with a [main template](Templates/Dockerfile.tpl), a master [config](Config/config.cfg) file and a [packages](Config/packages.cfg) config file for automatically generating the correct versions for packages to be installed.
+This is a comprehensive container framework for generating multiple docker containers with the same configuration. It uses a [core](Scripts/core.sh) controller script along with a [main template](Templates/Dockerfile.tpl), a master [config](Config/config.cfg) file and a [packages](Config/packages.cfg) config file for automatically generating the correct versions for packages to be installed.
 
 It will combine all of the above configuration to generate the required Dockerfiles and allow you to build them locally, scan them for known security issues as well as publish them to both `Docker Hub` and the `Github Container Registry`.
 
 ## Supported Operating Systems
+
+The framework attempts to support as many OS flavors and versions as possible, but with the caveat that it will only use `supported` versions of operating systems. Versions which have become `end of life (EOL)` will get removed shortly after they go `EOL`. It is however very simple for add additional versions or flavours if desired.
 
 | Operating System | Versions                           | Docker Hub                                             |
 | ---------------- | ---------------------------------- | ------------------------------------------------------ |
@@ -53,7 +55,11 @@ It will combine all of the above configuration to generate the required Dockerfi
 | Scientific Linux | 7                                  | [Official Image](https://hub.docker.com/_/sl)          |
 | Ubuntu           | 14.04, 16.04, 18.04, 20.04 & 22.04 | [Official Image](https://hub.docker.com/_/ubuntu)      |
 
+It is possible to generate, build, scan and publish all of the above containers at the same time.
+
 ## Naming convention
+
+We use a generic programmatically derived name for each container to ensure consistency and uniqueness for all containers.
 
 ### Local containers
 

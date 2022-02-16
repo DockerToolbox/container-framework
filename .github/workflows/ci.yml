@@ -15,7 +15,7 @@ on:
 jobs:
   get-git-ref:
     name: Get Git Ref
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     outputs:
       ref: ${{steps.get-git-ref.outputs.ref}}
     steps:
