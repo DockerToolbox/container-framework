@@ -9,6 +9,8 @@ This changelog was automatically generated using [Caretaker](https://github.com/
 
 - Testing self hosted jobs [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
 
+- Testing self hosted jobs [`[a69f0dc]`](https://github.com/DockerToolbox/container-framework/commit/a69f0dc41c827ed7f67bc3f3cf4ae9178be116c9)
+
 - update readme versions [`[a0dca85]`](https://github.com/DockerToolbox/container-framework/commit/a0dca85c9c5cec1a8efcd8cb8c320a2087fe7c1a)
 
 - Restore all os as this is a framework [`[71bd617]`](https://github.com/DockerToolbox/container-framework/commit/71bd6174b7abf8b5b279c69667abaad3564ebc25)
