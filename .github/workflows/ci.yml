@@ -15,7 +15,7 @@ on:
 jobs:
   get-git-ref:
     name: Get Git Ref
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     outputs:
       ref: ${{steps.get-git-ref.outputs.ref}}
     steps:
@@ -26,7 +26,6 @@ jobs:
     name: Alma Linux
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
-      runs-on: self-hosted
       directory: almalinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
   alpine:
@@ -34,7 +33,6 @@ jobs:
     name: Alpine Linux
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
-      runs-on: self-hosted
       directory: alpine
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 2
@@ -43,7 +41,6 @@ jobs:
     name: Amazon Linux
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
-      runs-on: self-hosted
       directory: amazonlinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
   archlinux:
@@ -51,7 +48,6 @@ jobs:
     name: Arch Linux
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
-      runs-on: self-hosted
       directory: archlinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
   centos:
@@ -59,7 +55,6 @@ jobs:
     name: Centos
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
-      runs-on: self-hosted
       directory: centos
       ref: ${{ needs.get-git-ref.outputs.ref }}
   debian:
@@ -67,7 +62,6 @@ jobs:
     name: Debian
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
-      runs-on: self-hosted
       directory: debian
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 4
@@ -76,7 +70,6 @@ jobs:
     name: Oracle Linux
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
-      runs-on: self-hosted
       directory: oraclelinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 2
@@ -85,7 +78,6 @@ jobs:
     name: Photon
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
-      runs-on: self-hosted
       directory: photon
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 2
@@ -94,7 +86,6 @@ jobs:
     name: Rocky Linux
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
-      runs-on: self-hosted
       directory: rockylinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
   scientificlinux:
@@ -102,7 +93,6 @@ jobs:
     name: Scientific Linux
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
-      runs-on: self-hosted
       directory: sl
       ref: ${{ needs.get-git-ref.outputs.ref }}
   ubuntu:
@@ -110,14 +100,13 @@ jobs:
     name: Ubuntu
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
-      runs-on: self-hosted
       directory: ubuntu
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 2
   shellcheck:
     needs: get-git-ref
     name: ShellCheck
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
@@ -127,7 +116,7 @@ jobs:
   yaml-lint:
     needs: get-git-ref
     name: YAML Lint
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
