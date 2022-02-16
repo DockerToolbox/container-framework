@@ -86,7 +86,6 @@ Dockerfiles
   ├── almalinux
   │   └── 8
   ├── alpine
-  │   ├── 3.11
   │   ├── 3.12
   │   ├── 3.13
   │   ├── 3.14
@@ -157,7 +156,6 @@ The second half only needs to be touched if you are planning to create container
 
 ```
 Dockerfiles
-  ├── 3.11
   ├── 3.12
   ├── 3.13
   ├── 3.14
@@ -253,15 +251,15 @@ The same file is used for all the containers and the valuables as substituted wh
 
 There is a cleanup symlink in each container directory which points to the correct cleanup script, this removes any packages that are no longer required and also removes packages caches and other general good practice cleanup operations.
 
-| File                        | Purpose                                                                                             |
-| --------------------------- | --------------------------------------------------------------------------------------------------- |
-| apk-cleanup.tpl             | Cleanup for Alpine based containers.                                                                |
-| apt-cleanup.tpl             | Cleanup for Debian / Ubuntu based containers.                                                       |
-| microdns-cleanup.tpl        | Cleanup for Oracle Linux 8-slim based containers.                                                   |
-| pacman-cleanup.tpl          | Cleanup for Arch Linux based containers.                                                            |
-| tdnf-cleanup.tpl            | Cleanup for Photon Linux based containers.                                                          |
-| yum-cleanup-with-leaves.tpl | Cleanup for Amazon Linux, Centos 7 & Oracle Linux 6 based containers.                               |
-| yum-cleanup.tpl             | Cleanup for Alma Linux, Centos 8+ (excluding 8-sim) & Oracle Linux 7+ Rocky Linux based containers. |
+| File                        | Purpose                                                                                   |
+| --------------------------- | ----------------------------------------------------------------------------------------- |
+| apk-cleanup.tpl             | Cleanup for Alpine based containers.                                                      |
+| apt-cleanup.tpl             | Cleanup for Debian / Ubuntu based containers.                                             |
+| microdns-cleanup.tpl        | Cleanup for Oracle Linux 8-slim based containers.                                         |
+| pacman-cleanup.tpl          | Cleanup for Arch Linux based containers.                                                  |
+| tdnf-cleanup.tpl            | Cleanup for Photon Linux based containers.                                                |
+| yum-cleanup-with-leaves.tpl | Cleanup for Amazon Linux, Centos 7 and Scientific Linux based containers.                 |
+| yum-cleanup.tpl             | Cleanup for Alma Linux, Oracle Linux (excluding 8-slim) and Rocky Linux based containers. |
 
 ### Helper Script
 
