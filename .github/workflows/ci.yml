@@ -52,7 +52,7 @@ jobs:
     needs:
       - list-changes
       - almalinux
-   runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Slack message
         uses: come25136/workflow-notification-for-slack@main
