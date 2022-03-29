@@ -21,6 +21,7 @@ jobs:
     with:
       directory: almalinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
+      force-build: true
   alpine:
     needs: get-git-ref
     name: Alpine Linux
@@ -29,6 +30,7 @@ jobs:
       directory: alpine
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 2
+      force-build: true
   amazonlinux:
     needs: get-git-ref
     name: Amazon Linux
@@ -36,6 +38,7 @@ jobs:
     with:
       directory: amazonlinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
+      force-build: true
   archlinux:
     needs: get-git-ref
     name: Arch Linux
@@ -43,6 +46,7 @@ jobs:
     with:
       directory: archlinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
+      force-build: true
   centos:
     needs: get-git-ref
     name: Centos
@@ -50,6 +54,7 @@ jobs:
     with:
       directory: centos
       ref: ${{ needs.get-git-ref.outputs.ref }}
+      force-build: true
   debian:
     needs: get-git-ref
     name: Debian
@@ -58,6 +63,7 @@ jobs:
       directory: debian
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 4
+      force-build: true
   oraclelinux:
     needs: get-git-ref
     name: Oracle Linux
@@ -66,6 +72,7 @@ jobs:
       directory: oraclelinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 2
+      force-build: true
   photon:
     needs: get-git-ref
     name: Photon
@@ -74,6 +81,7 @@ jobs:
       directory: photon
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 2
+      force-build: true
   rockylinux:
     needs: get-git-ref
     name: Rocky Linux
@@ -81,6 +89,7 @@ jobs:
     with:
       directory: rockylinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
+      force-build: true
   scientificlinux:
     needs: get-git-ref
     name: Scientific Linux
@@ -88,6 +97,7 @@ jobs:
     with:
       directory: sl
       ref: ${{ needs.get-git-ref.outputs.ref }}
+      force-build: true
   ubuntu:
     needs: get-git-ref
     name: Ubuntu
@@ -96,6 +106,7 @@ jobs:
       directory: ubuntu
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 2
+      force-build: true
   awesomebot:
     needs: get-git-ref
     name: Awesomebot
