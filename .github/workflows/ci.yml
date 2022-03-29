@@ -33,10 +33,10 @@ jobs:
       - name: Get changed files using defaults
         id: changed-files
         uses: tj-actions/changed-files@v18.5
-      - name: List all added files
+      - name: List all modified files
         run: |
-          for file in ${{ steps.changed-files.outputs.modified_files }}; do
-            echo "$file was added"
+          for file in ${{ steps.changed-files.outputs.all_modified_files }}; do
+            echo "$file was modified"
           done
   almalinux:
     needs: get-git-ref
