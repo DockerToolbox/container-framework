@@ -7,7 +7,9 @@ This changelog was automatically generated using [Caretaker](https://github.com/
 
 ### [Unreleased](https://github.com/DockerToolbox/container-framework/compare/v0.1.1...HEAD)
 
-- test [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
+- testing [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
+
+- test [`[592c3da]`](https://github.com/DockerToolbox/container-framework/commit/592c3da187c2f5d280402f4b529f51929e8e1643)
 
 - test [`[a46e8af]`](https://github.com/DockerToolbox/container-framework/commit/a46e8afc8feb6845ba7e244858063abeb037e105)
 
