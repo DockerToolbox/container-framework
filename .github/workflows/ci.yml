@@ -9,6 +9,15 @@ on:
     branches:
       - master
       - main
+  workflow_dispatch:
+    inputs:
+      force-build:
+        type: boolean
+        default: false
+        required: true
+
+env:
+  FORCE_BUILD: ${{ github.event.inputs.force-build }}
 
 jobs:
   get-git-ref:
