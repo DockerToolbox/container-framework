@@ -7,7 +7,9 @@ This changelog was automatically generated using [Caretaker](https://github.com/
 
 ### [Unreleased](https://github.com/DockerToolbox/container-framework/compare/v0.1.1...HEAD)
 
-- Update readme [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
+- Updated oraclelinux 8-slim [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
+
+- Update readme [`[ee6b73d]`](https://github.com/DockerToolbox/container-framework/commit/ee6b73d376fbfe21fff2178914d236ef7c8ca323)
 
 - Testing complete [`[dad9fda]`](https://github.com/DockerToolbox/container-framework/commit/dad9fda2997d461d725802cf72c59b6688c91f78)
 
