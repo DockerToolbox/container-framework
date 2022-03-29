@@ -121,6 +121,21 @@ jobs:
 #      directory: ubuntu
 #      ref: ${{ needs.get-git-ref.outputs.ref }}
 #      max-parallel: 2
+#  awesomebot:
+#    name: Awesomebot
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v2
+#      - name: Set up Ruby 3.0
+#        uses: ruby/setup-ruby@v1
+#        with:
+#          ruby-version: 3.0
+#      - name: Run Awesomebot
+#        env:
+#          FLAGS: "default"
+#          EXCLUDE_FILES: "CHANGELOG.md,Config/.*"
+#          WHITELIST: "https://img.shields.io"
+#        run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/awesomebot/master/pipeline.sh)
 #  shellcheck:
 #    needs: get-git-ref
 #    name: ShellCheck
@@ -161,6 +176,7 @@ jobs:
 #      - rockylinux
 #      - scientificlinux
 #      - ubuntu
+#      - awesomebot
 #      - shellcheck
 #      - yaml-lint
     runs-on: ubuntu-latest
