@@ -53,7 +53,7 @@ jobs:
       directory: almalinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 1
-      force-build: $FORCE_BUILD
+      force-build: ${{ github.event.inputs.force-build }}
   alpine:
     needs: get-git-ref
     name: Alpine Linux
