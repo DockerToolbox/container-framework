@@ -53,7 +53,7 @@ jobs:
       directory: almalinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 1
-      force-build: ${{ env.FORCE_BUILD }}
+      force-build: $FORCE_BUILD
   alpine:
     needs: get-git-ref
     name: Alpine Linux
@@ -62,7 +62,7 @@ jobs:
       directory: alpine
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 2
-      force-build: ${{ env.FORCE_BUILD }}
+      force-build: $FORCE_BUILD
   amazonlinux:
     needs: get-git-ref
     name: Amazon Linux
@@ -70,7 +70,7 @@ jobs:
     with:
       directory: amazonlinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
-      force-build: ${{ env.FORCE_BUILD }}
+      force-build: $FORCE_BUILD
   archlinux:
     needs: get-git-ref
     name: Arch Linux
@@ -78,7 +78,7 @@ jobs:
     with:
       directory: archlinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
-      force-build: ${{ env.FORCE_BUILD }}
+      force-build: $FORCE_BUILD
   centos:
     needs: get-git-ref
     name: Centos
@@ -86,7 +86,7 @@ jobs:
     with:
       directory: centos
       ref: ${{ needs.get-git-ref.outputs.ref }}
-      force-build: ${{ env.FORCE_BUILD }}
+      force-build: $FORCE_BUILD
   debian:
     needs: get-git-ref
     name: Debian
@@ -95,7 +95,7 @@ jobs:
       directory: debian
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 4
-      force-build: ${{ env.FORCE_BUILD }}
+      force-build: $FORCE_BUILD
   oraclelinux:
     needs: get-git-ref
     name: Oracle Linux
@@ -104,7 +104,7 @@ jobs:
       directory: oraclelinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 2
-      force-build: ${{ env.FORCE_BUILD }}
+      force-build: $FORCE_BUILD
   photon:
     needs: get-git-ref
     name: Photon
@@ -113,7 +113,7 @@ jobs:
       directory: photon
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 2
-      force-build: ${{ env.FORCE_BUILD }}
+      force-build: $FORCE_BUILD
   rockylinux:
     needs: get-git-ref
     name: Rocky Linux
@@ -121,7 +121,7 @@ jobs:
     with:
       directory: rockylinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
-      force-build: ${{ env.FORCE_BUILD }}
+      force-build: $FORCE_BUILD
   scientificlinux:
     needs: get-git-ref
     name: Scientific Linux
@@ -129,7 +129,7 @@ jobs:
     with:
       directory: sl
       ref: ${{ needs.get-git-ref.outputs.ref }}
-      force-build: ${{ env.FORCE_BUILD }}
+      force-build: $FORCE_BUILD
   ubuntu:
     needs: get-git-ref
     name: Ubuntu
@@ -138,7 +138,7 @@ jobs:
       directory: ubuntu
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 2
-      force-build: ${{ env.FORCE_BUILD }}
+      force-build: $FORCE_BUILD
   awesomebot:
     name: Awesomebot
     runs-on: ubuntu-latest
