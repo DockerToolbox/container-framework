@@ -24,6 +24,7 @@ jobs:
   list-changes:
     needs: get-git-ref
     name: List Changes
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
