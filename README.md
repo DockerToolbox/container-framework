@@ -43,7 +43,7 @@ The framework attempts to support as many OS flavors and versions as possible, b
 
 | Operating System | Versions                           | Docker Hub                                             |
 | ---------------- | ---------------------------------- | ------------------------------------------------------ |
-| Alma Linux       | 8                                  | [Official Image](https://hub.docker.com/_/almalinux)   |
+| Alma Linux       | 8 & 8-minimal                      | [Official Image](https://hub.docker.com/_/almalinux)   |
 | Alpine           | 3.12, 3.13, 3.14 & 3.15            | [Official Image](https://hub.docker.com/_/alpine)      |
 | Amazon Linux     | 1 & 2                              | [Official Image](https://hub.docker.com/_/amazonlinux) |
 | Arch Linux       | base                               | [Official Image](https://hub.docker.com/_/archlinux)   |
