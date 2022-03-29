@@ -7,7 +7,9 @@ This changelog was automatically generated using [Caretaker](https://github.com/
 
 ### [Unreleased](https://github.com/DockerToolbox/container-framework/compare/v0.1.1...HEAD)
 
-- Fix the cleanup script [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
+- test [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
+
+- Fix the cleanup script [`[1b53028]`](https://github.com/DockerToolbox/container-framework/commit/1b53028f1a2c8eaae2d1f060ac345a22008458f3)
 
 - Added 8-minimal [`[33e7a96]`](https://github.com/DockerToolbox/container-framework/commit/33e7a967a9e20ce9d5bc9705397eba46d0ada770)
 
