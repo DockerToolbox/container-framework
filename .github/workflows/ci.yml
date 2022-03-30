@@ -39,6 +39,7 @@ jobs:
   almalinux:
     needs: get-git-ref
     name: Alma Linux
+    if: contains(steps.changed-files.outputs.all_modified_files, 'almalinux')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: almalinux
