@@ -19,10 +19,12 @@ jobs:
     steps:
       - name: Get Git Ref
         run: echo "::set-output name=ref::${{ github.ref }}"
-  list-changes:
+  changed-files:
     needs: get-git-ref
     name: List Changes
     runs-on: ubuntu-latest
+    outputs:
+      all_modified_files: ${{steps.changed-files.outputs.all_modified_files}}
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
@@ -37,9 +39,9 @@ jobs:
             echo "$file was modified"
           done
   almalinux:
-    needs: get-git-ref
+    needs: [ get-git-ref, changed-files ]
     name: Alma Linux
-    if: contains(steps.changed-files.outputs.all_modified_files, 'almalinux')
+    if: contains(needs.changed-files.outputs.all_modified_files, 'almalinux')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: almalinux
@@ -163,7 +165,6 @@ jobs:
     if: always()
     name: Slack Post Workflow Notification
     needs:
-      - list-changes
       - almalinux
       - alpine
       - amazonlinux
