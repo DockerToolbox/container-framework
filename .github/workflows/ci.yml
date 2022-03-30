@@ -41,82 +41,92 @@ jobs:
   almalinux:
     needs: [ get-git-ref, changed-files ]
     name: Alma Linux
-    if: contains(needs.changed-files.outputs.all_modified_files, 'almalinux')
+    if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/almalinux')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: almalinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 1
   alpine:
-    needs: get-git-ref
+    needs: [ get-git-ref, changed-files ]
     name: Alpine Linux
+    if: contains(needs.changed-files.outputs.all_modified_files, 'alpine')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: alpine
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 2
   amazonlinux:
-    needs: get-git-ref
+    needs: [ get-git-ref, changed-files ]
     name: Amazon Linux
+    if: contains(needs.changed-files.outputs.all_modified_files, 'amazonlinux')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: amazonlinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
   archlinux:
-    needs: get-git-ref
+    needs: [ get-git-ref, changed-files ]
     name: Arch Linux
+    if: contains(needs.changed-files.outputs.all_modified_files, 'archlinux')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: archlinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
   centos:
-    needs: get-git-ref
+    needs: [ get-git-ref, changed-files ]
     name: Centos
+    if: contains(needs.changed-files.outputs.all_modified_files, 'centos')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: centos
       ref: ${{ needs.get-git-ref.outputs.ref }}
   debian:
-    needs: get-git-ref
+    needs: [ get-git-ref, changed-files ]
     name: Debian
+    if: contains(needs.changed-files.outputs.all_modified_files, 'debian')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: debian
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 4
   oraclelinux:
-    needs: get-git-ref
+    needs: [ get-git-ref, changed-files ]
     name: Oracle Linux
+    if: contains(needs.changed-files.outputs.all_modified_files, 'oraclelinux')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: oraclelinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 2
   photon:
-    needs: get-git-ref
+    needs: [ get-git-ref, changed-files ]
     name: Photon
+    if: contains(needs.changed-files.outputs.all_modified_files, 'photon')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: photon
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 2
   rockylinux:
-    needs: get-git-ref
+    needs: [ get-git-ref, changed-files ]
     name: Rocky Linux
+    if: contains(needs.changed-files.outputs.all_modified_files, 'rockylinux')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: rockylinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
   scientificlinux:
-    needs: get-git-ref
+    needs: [ get-git-ref, changed-files ]
     name: Scientific Linux
+    if: contains(needs.changed-files.outputs.all_modified_files, 'sl')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: sl
       ref: ${{ needs.get-git-ref.outputs.ref }}
   ubuntu:
-    needs: get-git-ref
+    needs: [ get-git-ref, changed-files ]
     name: Ubuntu
+    if: contains(needs.changed-files.outputs.all_modified_files, 'ubuntu')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: ubuntu
