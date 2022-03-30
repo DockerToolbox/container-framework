@@ -21,7 +21,7 @@ jobs:
         run: echo "::set-output name=ref::${{ github.ref }}"
   changed-files:
     needs: get-git-ref
-    name: List Changes
+    name: Get Changed Files
     runs-on: ubuntu-latest
     outputs:
       all_modified_files: ${{steps.changed-files.outputs.all_modified_files}}
@@ -41,7 +41,7 @@ jobs:
   almalinux:
     needs: [ get-git-ref, changed-files ]
     name: Alma Linux
-    if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/almalinux')
+    if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/almalinux/')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: almalinux
@@ -50,7 +50,7 @@ jobs:
   alpine:
     needs: [ get-git-ref, changed-files ]
     name: Alpine Linux
-    if: contains(needs.changed-files.outputs.all_modified_files, 'alpine')
+    if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/alpine/')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: alpine
@@ -59,7 +59,7 @@ jobs:
   amazonlinux:
     needs: [ get-git-ref, changed-files ]
     name: Amazon Linux
-    if: contains(needs.changed-files.outputs.all_modified_files, 'amazonlinux')
+    if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/amazonlinux/')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: amazonlinux
@@ -67,7 +67,7 @@ jobs:
   archlinux:
     needs: [ get-git-ref, changed-files ]
     name: Arch Linux
-    if: contains(needs.changed-files.outputs.all_modified_files, 'archlinux')
+    if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/archlinux/')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: archlinux
@@ -75,7 +75,7 @@ jobs:
   centos:
     needs: [ get-git-ref, changed-files ]
     name: Centos
-    if: contains(needs.changed-files.outputs.all_modified_files, 'centos')
+    if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/centos/')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: centos
@@ -83,7 +83,7 @@ jobs:
   debian:
     needs: [ get-git-ref, changed-files ]
     name: Debian
-    if: contains(needs.changed-files.outputs.all_modified_files, 'debian')
+    if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/debian/')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: debian
@@ -92,7 +92,7 @@ jobs:
   oraclelinux:
     needs: [ get-git-ref, changed-files ]
     name: Oracle Linux
-    if: contains(needs.changed-files.outputs.all_modified_files, 'oraclelinux')
+    if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/oraclelinux/')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: oraclelinux
@@ -101,7 +101,7 @@ jobs:
   photon:
     needs: [ get-git-ref, changed-files ]
     name: Photon
-    if: contains(needs.changed-files.outputs.all_modified_files, 'photon')
+    if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/photon/')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: photon
@@ -110,7 +110,7 @@ jobs:
   rockylinux:
     needs: [ get-git-ref, changed-files ]
     name: Rocky Linux
-    if: contains(needs.changed-files.outputs.all_modified_files, 'rockylinux')
+    if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/rockylinux/')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: rockylinux
@@ -118,7 +118,7 @@ jobs:
   scientificlinux:
     needs: [ get-git-ref, changed-files ]
     name: Scientific Linux
-    if: contains(needs.changed-files.outputs.all_modified_files, 'sl')
+    if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/sl/')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: sl
@@ -126,7 +126,7 @@ jobs:
   ubuntu:
     needs: [ get-git-ref, changed-files ]
     name: Ubuntu
-    if: contains(needs.changed-files.outputs.all_modified_files, 'ubuntu')
+    if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/ubuntu/')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: ubuntu
