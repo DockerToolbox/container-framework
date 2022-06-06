@@ -5,9 +5,17 @@ All notable changes to this project will be documented in this file.
 
 This changelog was automatically generated using [Caretaker](https://github.com/DevelopersToolbox/caretaker) by [Wolf Software](https://github.com/WolfSoftware)
 
-### [Unreleased](https://github.com/DockerToolbox/container-framework/compare/v0.1.1...HEAD)
+### [Unreleased](https://github.com/DockerToolbox/container-framework/compare/v0.1.2...HEAD)
 
-- testing [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
+- Update support versions [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
+
+- Add stale.yml [`[e7e349a]`](https://github.com/DockerToolbox/container-framework/commit/e7e349a8068963bcb6c7d879bf2905ad83bac935)
+
+### [v0.1.1](https://github.com/DockerToolbox/container-framework/compare/v0.1.0...v0.1.1)
+
+> Released on March, 30th 2022
+
+- testing [`[4b7af58]`](https://github.com/DockerToolbox/container-framework/commit/4b7af5827f8b8fd95fdbb8afb2864590af2fb337)
 
 - testing [`[7e542d1]`](https://github.com/DockerToolbox/container-framework/commit/7e542d16f9a2591c4f4639b18b1d9871a306b96c)
 
