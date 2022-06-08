@@ -392,7 +392,7 @@ cat <<EOF
       -s | --scan     : Scan a container
       -G | --ghcr     : Publish to Github Container Registry
 EOF
-#    abort
+    abort
 }
 
 # -------------------------------------------------------------------------------- #
