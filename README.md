@@ -41,19 +41,43 @@ It will combine all of the above configuration to generate the required Dockerfi
 
 The framework attempts to support as many OS flavors and versions as possible, but with the caveat that it will only use `supported` versions of operating systems. Versions which have become `end of life (EOL)` will get removed shortly after they go `EOL`. It is however very simple for add additional versions or flavours if desired.
 
-| Operating System | Versions                           | Docker Hub                                             |
-| ---------------- | ---------------------------------- | ------------------------------------------------------ |
-| Alma Linux       | 8 & 9 (full and minimal)           | [Official Image](https://hub.docker.com/_/almalinux)   |
-| Alpine           | 3.13, 3.14, 3.15 & 3.16            | [Official Image](https://hub.docker.com/_/alpine)      |
-| Amazon Linux     | 1 & 2                              | [Official Image](https://hub.docker.com/_/amazonlinux) |
-| Arch Linux       | base                               | [Official Image](https://hub.docker.com/_/archlinux)   |
-| Centos           | 7                                  | [Official Image](https://hub.docker.com/_/centos)      |
-| Debian           | 9, 10, 11 & 12 (full & slim)       | [Official Image](https://hub.docker.com/_/debian)      |
-| Oracle Linux     | 7 & 8 (full & slim)                | [Official Image](https://hub.docker.com/_/oraclelinux) |
-| Photon           | 1.0, 2.0, 3.0 & 4.0                | [Official Image](https://hub.docker.com/_/photon)      |
-| Rocky Linux      | 8                                  | [Official Image](https://hub.docker.com/_/rockylinux)  |
-| Scientific Linux | 7                                  | [Official Image](https://hub.docker.com/_/sl)          |
-| Ubuntu           | 14.04, 16.04, 18.04, 20.04 & 22.04 | [Official Image](https://hub.docker.com/_/ubuntu)      |
+| Operating System Version       | Official Base Container                            | Container Registries                                                                                                                                                                                    | Tags                     |
+| ------------------------------ | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
+| Alma Linux 8                   | [Base Image](https://hub.docker.com/_/almalinux)   | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-almalinux)   \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-almalinux)   | 8, *latest*              |
+| Alma Linux 8 Minimal           | [Base Image](https://hub.docker.com/_/almalinux)   | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-almalinux)   \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-almalinux)   | 8-minimal                |
+| Alma Linux 9                   | [Base Image](https://hub.docker.com/_/almalinux)   | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-almalinux)   \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-almalinux)   | 9                        |
+| Alma Linux 9 Minimal           | [Base Image](https://hub.docker.com/_/almalinux)   | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-almalinux)   \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-almalinux)   | 9-minimal                |
+| Alpine 3.13                    | [Base Image](https://hub.docker.com/_/alpine)      | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-alpine)      \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-alpine)      | 3.13                     |
+| Alpine 3.14                    | [Base Image](https://hub.docker.com/_/alpine)      | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-alpine)      \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-alpine)      | 3.14                     |
+| Alpine 3.15                    | [Base Image](https://hub.docker.com/_/alpine)      | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-alpine)      \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-alpine)      | 3.15                     |
+| Alpine 3.16                    | [Base Image](https://hub.docker.com/_/alpine)      | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-alpine)      \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-alpine)      | 3.16, *latest*           |
+| Amazon Linux 1                 | [Base Image](https://hub.docker.com/_/amazonlinux) | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-amazonlinux) \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-amazonlinux) | 1                        |
+| Amazon Linux 2                 | [Base Image](https://hub.docker.com/_/amazonlinux) | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-amazonlinux) \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-amazonlinux) | 2, *latest*              |
+| Arch Linux                     | [Base Image](https://hub.docker.com/_/archlinux)   | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-archlinux)   \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-archlinux)   | base, *latest*           |
+| Centos 7                       | [Base Image](https://hub.docker.com/_/centos)      | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-centos)      \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-centos)      | 7, *latest*              |
+| Debian 9 (Stretch)             | [Base Image](https://hub.docker.com/_/debian)      | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-debian)      \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-debian)      | 9, stretch               |
+| Debian 9 Slim (Stretch Slim)   | [Base Image](https://hub.docker.com/_/debian)      | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-debian)      \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-debian)      | 9-slim, stretch-slim     |
+| Debian 10 (Buster)             | [Base Image](https://hub.docker.com/_/debian)      | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-debian)      \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-debian)      | 10, buster               |
+| Debian 10 Slim (Buster Slim)   | [Base Image](https://hub.docker.com/_/debian)      | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-debian)      \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-debian)      | 10-slim, buster-slim     |
+| Debian 11 (Bullseye)           | [Base Image](https://hub.docker.com/_/debian)      | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-debian)      \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-debian)      | 11, bullseye, *latest*   |
+| Debian 11 Slim (Bullseye Slim) | [Base Image](https://hub.docker.com/_/debian)      | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-debian)      \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-debian)      | 11-slim, bullseye-slim   |
+| Debian 12 (Bookworm)           | [Base Image](https://hub.docker.com/_/debian)      | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-debian)      \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-debian)      | 12, bookworm             |
+| Debian 12 Slim (Bookworm Slim) | [Base Image](https://hub.docker.com/_/debian)      | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-debian)      \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-debian)      | 12-slim, bookworm-slim   |
+| Oracle Linux 7                 | [Base Image](https://hub.docker.com/_/oraclelinux) | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-oraclelinux) \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-oraclelinux) | 7                        |
+| Oracle Linux 7 Slim            | [Base Image](https://hub.docker.com/_/oraclelinux) | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-oraclelinux) \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-oraclelinux) | 7-slim                   |
+| Oracle Linux 8                 | [Base Image](https://hub.docker.com/_/oraclelinux) | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-oraclelinux) \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-oraclelinux) | 8                        |
+| Oracle Linux 8 Slim            | [Base Image](https://hub.docker.com/_/oraclelinux) | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-oraclelinux) \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-oraclelinux) | 8-slim                   |
+| Photon 1.0                     | [Base Image](https://hub.docker.com/_/photon)      | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-photon)      \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-photon)      | 1.0                      |
+| Photon 2.0                     | [Base Image](https://hub.docker.com/_/photon)      | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-photon)      \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-photon)      | 2.0                      |
+| Photon 3.0                     | [Base Image](https://hub.docker.com/_/photon)      | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-photon)      \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-photon)      | 3.0                      |
+| Photon 4.0                     | [Base Image](https://hub.docker.com/_/photon)      | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-photon)      \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-photon)      | 4.0, *latest*            |
+| Rocky Linux 8                  | [Base Image](https://hub.docker.com/_/rockylinux)  | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-rockylinux)  \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-rockylinux)  | 8, *latest*              |
+| Scientific Linux 7             | [Base Image](https://hub.docker.com/_/sl)          | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-sl)          \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-sl)          | 7, *latest*              |
+| Ubuntu 14.04 (Trusty Tahr)     | [Base Image](https://hub.docker.com/_/ubuntu)      | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-ubuntu)      \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-ubuntu)      | 14.04, trusty            |
+| Ubuntu 16.04 (Xenial Xerus)    | [Base Image](https://hub.docker.com/_/ubuntu)      | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-ubuntu)      \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-ubuntu)      | 16.04, xenial            |
+| Ubuntu 18.04 (Bionic Beaver)   | [Base Image](https://hub.docker.com/_/ubuntu)      | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-ubuntu)      \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-ubuntu)      | 18.04, bionic            |
+| Ubuntu 20.04 (Focal Fossa)     | [Base Image](https://hub.docker.com/_/ubuntu)      | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-ubuntu)      \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-ubuntu)      | 20.04, focal             |
+| Ubuntu 22.04 (Jammy Jellyfish) | [Base Image](https://hub.docker.com/_/ubuntu)      | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-ubuntu)      \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-ubuntu)      | 22.04, jammy, *latest*   |
 
 It is possible to generate, build, scan and publish all of the above containers at the same time.
 
@@ -83,50 +107,52 @@ The container names are dynamically generated based on the directory tree. All o
 
 ```
 Dockerfiles
-  ├── almalinux
-  │   └── 8
-  ├── alpine
-  │   ├── 3.12
-  │   ├── 3.13
-  │   ├── 3.14
-  │   └── 3.15
-  ├── amazonlinux
-  │   ├── 1
-  │   └── 2
-  ├── archlinux
-  │   └── base
-  ├── centos
-  │   ├── 7
-  │   └── 8
-  ├── debian
-  │   ├── 9
-  │   ├── 9-slim
-  │   ├── 10
-  │   ├── 10-slim
-  │   ├── 11
-  │   ├── 11-slim
-  │   ├── 12
-  │   └── 12-slim
-  ├── oraclelinux
-  │   ├── 7
-  │   ├── 7-slim
-  │   ├── 8
-  │   └── 8-slim
-  ├── photon
-  │   ├── 1.0
-  │   ├── 2.0
-  │   ├── 3.0
-  │   └── 4.0
-  ├── rockylinux
-  │   └── 8
-  ├── sl
-  │   └── 7
-  └── ubuntu
-      ├── 14.04
-      ├── 16.04
-      ├── 18.04
-      ├── 20.04
-      └── 22.04
+├── almalinux
+│   ├── 8
+│   ├── 8-minimal
+│   ├── 9
+│   └── 9-minimal
+├── alpine
+│   ├── 3.13
+│   ├── 3.14
+│   ├── 3.15
+│   └── 3.16
+├── amazonlinux
+│   ├── 1
+│   └── 2
+├── archlinux
+│   └── base
+├── centos
+│   └── 7
+├── debian
+│   ├── 10
+│   ├── 10-slim
+│   ├── 11
+│   ├── 11-slim
+│   ├── 12
+│   ├── 12-slim
+│   ├── 9
+│   └── 9-slim
+├── oraclelinux
+│   ├── 7
+│   ├── 7-slim
+│   ├── 8
+│   └── 8-slim
+├── photon
+│   ├── 1.0
+│   ├── 2.0
+│   ├── 3.0
+│   └── 4.0
+├── rockylinux
+│   └── 8
+├── sl
+│   └── 7
+└── ubuntu
+    ├── 14.04
+    ├── 16.04
+    ├── 18.04
+    ├── 20.04
+    └── 22.04
 ```
 
 ## Development

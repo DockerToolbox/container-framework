@@ -5,17 +5,21 @@ All notable changes to this project will be documented in this file.
 
 This changelog was automatically generated using [Caretaker](https://github.com/DevelopersToolbox/caretaker) by [Wolf Software](https://github.com/WolfSoftware)
 
-### [v0.1.3](https://github.com/DockerToolbox/container-framework/compare/v0.1.2...v0.1.3)
+### [Unreleased](https://github.com/DockerToolbox/container-framework/compare/v0.1.3...HEAD)
+
+- Update docs [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
+
+### [v0.1.2](https://github.com/DockerToolbox/container-framework/compare/v0.1.1...v0.1.2)
 
 > Released on June, 8th 2022
 
-- Cleanup [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
+- Cleanup [`[04668be]`](https://github.com/DockerToolbox/container-framework/commit/04668be2abbead73006b30d129ed34a2838f1f73)
 
 - Update support versions [`[f324988]`](https://github.com/DockerToolbox/container-framework/commit/f324988075fe0739056d148374fb878ba5f97575)
 
 - Add stale.yml [`[e7e349a]`](https://github.com/DockerToolbox/container-framework/commit/e7e349a8068963bcb6c7d879bf2905ad83bac935)
 
-### [v0.1.2](https://github.com/DockerToolbox/container-framework/compare/v0.1.1...v0.1.2)
+### [v0.1.1](https://github.com/DockerToolbox/container-framework/compare/v0.1.0...v0.1.1)
 
 > Released on March, 30th 2022
 
@@ -129,7 +133,7 @@ This changelog was automatically generated using [Caretaker](https://github.com/
 
 - Add concurreny limits [`[8a9a881]`](https://github.com/DockerToolbox/container-framework/commit/8a9a8817ea9b064027a4f5f942ef8e3bb31f2267)
 
-### [v0.1.1](https://github.com/DockerToolbox/container-framework/compare/v0.1.0...v0.1.1)
+### [v0.1.0](https://github.com/DockerToolbox/container-framework/releases/v0.1.0)
 
 > Released on February, 10th 2022
 
@@ -208,10 +212,6 @@ This changelog was automatically generated using [Caretaker](https://github.com/
 - Update [`[a116d18]`](https://github.com/DockerToolbox/container-framework/commit/a116d186bab27864667a7b79c6a5cf779b2d7621)
 
 - Updated [`[26d7556]`](https://github.com/DockerToolbox/container-framework/commit/26d75568094332229ba0c962aee1b23b27d8382a)
-
-### [v0.1.0](https://github.com/DockerToolbox/container-framework/releases/v0.1.0)
-
-> Released on November, 22nd 2021
 
 - The initial commit [`[d70b483]`](https://github.com/DockerToolbox/container-framework/commit/d70b483be2b26d46d6dc10aa8e9064843175e65e)
 
