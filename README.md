@@ -35,7 +35,7 @@
 
 This is a comprehensive container framework for generating multiple docker containers with the same configuration. It uses a [core](Scripts/core.sh) controller script along with a [main template](Templates/Dockerfile.tpl), a master [config](Config/config.cfg) file and a [packages](Config/packages.cfg) config file for automatically generating the correct versions for packages to be installed.
 
-It will combine all of the above configuration to generate the required Dockerfiles and allow you to build them locally, scan them for known security issues as well as publish them to both `Docker Hub` and the `Github Container Registry`.
+It will combine all of the above configuration to generate the required Dockerfiles and allow you to build them locally as well as publish them to both `Docker Hub` and the `Github Container Registry`.
 
 ## Supported Operating Systems
 
@@ -79,7 +79,7 @@ The framework attempts to support as many OS flavors and versions as possible, b
 | Ubuntu 20.04 (Focal Fossa)     | [Base Image](https://hub.docker.com/_/ubuntu)      | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-ubuntu)      \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-ubuntu)      | 20.04, focal             |
 | Ubuntu 22.04 (Jammy Jellyfish) | [Base Image](https://hub.docker.com/_/ubuntu)      | [Docker Hub](https://hub.docker.com/r/wolfsoftwareltd/container-framework-ubuntu)      \| [GitHub](https://github.com/DockerToolbox/container-framework/pkgs/container/container-framework-ubuntu)      | 22.04, jammy, *latest*   |
 
-It is possible to generate, build, scan and publish all of the above containers at the same time.
+It is possible to generate, build and publish all of the above containers at the same time.
 
 ## Naming convention
 
@@ -301,8 +301,8 @@ We do supply Dockerfiles within the repository, these Dockerfiles are dynamicall
     -b | --build    : Build a container (Optional: -c or --clean)
     -g | --generate : Generate a Dockerfile
     -p | --publish  : Publish a container
-    -s | --scan     : Scan a container
     -G | --ghcr     : Publish to Github Container Registry
+    -t | --tags     : Add additional tags
 ```
 
 > These options are available at any level of the directory tree.
@@ -317,12 +317,6 @@ We do supply Dockerfiles within the repository, these Dockerfiles are dynamicall
 
 ```
 ./manage-all.sh --build [--clean]
-```
-
-#### Scan Containers
-
-```
-./manage-all.sh --scan         
 ```
 
 #### Publish Containers

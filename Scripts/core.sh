@@ -42,8 +42,8 @@ BUILD=false
 CLEAN=false
 LATEST=false
 PUBLISH=false
-SCAN=false
 GHCR=false
+ADDITIONAL_TAGS=""
 
 # -------------------------------------------------------------------------------- #
 # -------------------------------------------------------------------------------- #
@@ -282,17 +282,6 @@ function build_container()
 # -------------------------------------------------------------------------------- #
 # -------------------------------------------------------------------------------- #
 
-function scan_container()
-{
-    info "Scanning: ${LOCAL_CONTAINER_NAME}"
-    yes | docker scan "${LOCAL_CONTAINER_NAME}"
-    info "Complete"
-}
-
-# -------------------------------------------------------------------------------- #
-# -------------------------------------------------------------------------------- #
-# -------------------------------------------------------------------------------- #
-
 function get_image_id()
 {
     local image_id
@@ -303,8 +292,6 @@ function get_image_id()
         abort "Unable to locate image ID - aborting"
     fi
 
-    info "\tUsing image ID: ${image_id}"
-
     echo "${image_id}"
 }
 
@@ -312,7 +299,7 @@ function get_image_id()
 # -------------------------------------------------------------------------------- #
 # -------------------------------------------------------------------------------- #
 
-function tag_image()
+function publish_single_version()
 {
     local image_id="${1:-}"
     local tag="${2:-}"
@@ -320,25 +307,10 @@ function tag_image()
     tag="${tag##*( )}" # Remove leading spaces
     tag="${tag%%*( )}" # Remove trailing spaces
 
-    info "\tAdding tag ${PUBLISHED_CONTAINER_NAME_FULL}:${tag}"
-
+    info "Publishing: ${LOCAL_CONTAINER_NAME} using image ID: ${image_id} to ${PUBLISHED_CONTAINER_NAME_FULL}:${tag}"
     docker tag "${image_id}" "${PUBLISHED_CONTAINER_NAME_FULL}":"${tag}"
+    docker push "${PUBLISHED_CONTAINER_NAME_FULL}":"${tag}"
 }
-
-# -------------------------------------------------------------------------------- #
-# -------------------------------------------------------------------------------- #
-# -------------------------------------------------------------------------------- #
-
-function push_image
-{
-    info "\tPushing ${PUBLISHED_CONTAINER_NAME_FULL}"
-
-    docker push "${PUBLISHED_CONTAINER_NAME_FULL}" --all-tags
-}
-
-# -------------------------------------------------------------------------------- #
-# -------------------------------------------------------------------------------- #
-# -------------------------------------------------------------------------------- #
 
 function publish_container()
 {
@@ -351,8 +323,7 @@ function publish_container()
         PUBLISHED_CONTAINER_NAME_FULL="${DOCKER_HUB_ORG}/${PUBLISHED_CONTAINER_NAME}"
     fi
 
-    info "Publishing: ${LOCAL_CONTAINER_NAME}"
-
+    tag_string+="${ADDITIONAL_TAGS}"
     if [[ "${LATEST}" = true ]]; then
         tag_string+=',latest'
     fi
@@ -363,10 +334,8 @@ function publish_container()
 
     for tag in "${tags[@]}"
     do
-        tag_image "${image_id}" "${tag}"
+        publish_single_version "${image_id}" "${tag}"
     done
-
-    push_image
 
     info "Complete"
 }
@@ -389,8 +358,8 @@ cat <<EOF
       -b | --build    : Build a container (Optional: -c or --clean)
       -g | --generate : Generate a Dockerfile
       -p | --publish  : Publish a container
-      -s | --scan     : Scan a container
       -G | --ghcr     : Publish to Github Container Registry
+      -t | --tags     : Add additional tags
 EOF
     abort
 }
@@ -425,8 +394,8 @@ function process_options()
 
     test_getopt
 
-    options=hdbcgpslG
-    longopts=help,debug,build,clean,generate,publish,scan,latest,ghcr
+    options=hdbcgplGt:
+    longopts=help,debug,build,clean,generate,publish,latest,ghcr,tags:
 
     if ! PARSED=$(getopt --options=$options --longoptions=$longopts --name "$0" -- "$@") && true; then
         usage
@@ -457,10 +426,6 @@ function process_options()
                 PUBLISH=true
                 shift
                 ;;
-            -s|--scan)
-                SCAN=true
-                shift
-                ;;
             -l|--latest)
                 LATEST=true
                 shift
@@ -469,6 +434,10 @@ function process_options()
                 GHCR=true
                 shift
                 ;;
+            -t|--tags)
+                ADDITIONAL_TAGS+="${ADDITIONAL_TAGS},${2}"
+                shift 2
+                ;;
             --)
                 shift
                 break
@@ -476,11 +445,10 @@ function process_options()
         esac
     done
 
-    [[ "${GENERATE}" != true ]] && [[ "${BUILD}" != true ]] && [[ "${SCAN}" != true ]] && [[ "${PUBLISH}" != true ]] &&  usage "You must select generate, build, scan or publish"
+    [[ "${GENERATE}" != true ]] && [[ "${BUILD}" != true ]] && [[ "${PUBLISH}" != true ]] &&  usage "You must select generate, build or publish"
 
     [[ "${GENERATE}" = true ]] && generate_container
     [[ "${BUILD}" = true ]] &&  build_container
-    [[ "${SCAN}" = true ]] && scan_container
     [[ "${PUBLISH}" = true ]] &&  publish_container
 
     exit 0
@@ -622,7 +590,6 @@ function setup_container_details()
     local PARTS
 
     IFS="/" read -ra PARTS <<< "$(pwd)"
-
 
     if [[ "${SINGLE_OS}" != true ]]; then
         CONTAINER_OS_NAME=${PARTS[-2]}				# OS name

@@ -46,7 +46,7 @@ jobs:
     with:
       directory: almalinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 1
+      max-parallel: 2
   alpine:
     needs: [ get-git-ref, changed-files ]
     name: Alpine Linux
