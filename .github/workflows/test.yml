@@ -1,10 +1,8 @@
 name: test
-on:
-  push:
-    branches: [master, main]
+on: [push, pull_request]
 
 jobs:
- get-git-ref:
+  get-git-ref:
     name: Get Git Ref
     runs-on: ubuntu-latest
     outputs:
