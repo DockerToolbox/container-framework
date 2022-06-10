@@ -1,8 +1,5 @@
 name: test
-on:
-  push:
-    branches:
-      - '**'
+on: push
 
 jobs:
  get-git-ref:
