@@ -40,7 +40,7 @@ jobs:
     with:
       directory: almalinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 1
+      max-parallel: 2
       force-build: ${{ fromJSON(github.event.inputs.force-build) }}
   alpine:
     needs: get-git-ref
