@@ -71,6 +71,18 @@ function check_file()
 # -------------------------------------------------------------------------------- #
 # -------------------------------------------------------------------------------- #
 
+function file_exists()
+{
+    if [[ ! -f "${REPO_ROOT}/${1}" ]]; then
+        return 1
+    fi
+    return 0
+}
+
+# -------------------------------------------------------------------------------- #
+# -------------------------------------------------------------------------------- #
+# -------------------------------------------------------------------------------- #
+
 function source_file()
 {
     filename="${1:-}"
@@ -93,8 +105,9 @@ function load_file()
         # shellcheck disable=SC1090,1091
         content=$(<"${REPO_ROOT}/${filename}")
         echo "${content}"
+    else
+        echo ""
     fi
-    echo ""
 }
 
 # -------------------------------------------------------------------------------- #
@@ -245,8 +258,11 @@ function generate_container()
     #
     GIT_URL=$(get_git_url)
 
-    # shellcheck disable=2034
-    LABELS=$(load_file "/Config/labels.cfg")
+    LABELS=''
+    if file_exists "/Config/labels.cfg"; then
+        # shellcheck disable=2034
+        LABELS=$(load_file "/Config/labels.cfg")
+    fi
     LABELS="${LABELS}\nLABEL org.opencontainers.image.source='${GIT_URL}'\nLABEL org.opencontainers.image.documentation='${GIT_URL}'\n"
 
     eval "echo -e \"${dockerfile}\"" >| Dockerfile
