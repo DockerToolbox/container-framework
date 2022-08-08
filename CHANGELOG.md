@@ -9,6 +9,8 @@ This changelog was automatically generated using [Caretaker](https://github.com/
 
 - Add something to delete old runs [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
 
+- Add something to delete old runs [`[7501e16]`](https://github.com/DockerToolbox/container-framework/commit/7501e163d113c25a61ec5299b4d113b7347da5cb)
+
 - Updated docs [`[c54eb24]`](https://github.com/DockerToolbox/container-framework/commit/c54eb24cfd6504a0d6d0a4ff6704739b2681f8f3)
 
 - new [`[eca3b08]`](https://github.com/DockerToolbox/container-framework/commit/eca3b088db2ed97b9f1b1d4931e486186d0657d3)
