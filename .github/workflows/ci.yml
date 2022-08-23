@@ -1,4 +1,4 @@
-name: ci
+name: default jobs
 on:
   push:
     branches:
@@ -12,25 +12,25 @@ on:
 
 jobs:
   get-git-ref:
-    name: Get Git Ref
+    name: Get current git reference
     runs-on: ubuntu-latest
     outputs:
       ref: ${{steps.get-git-ref.outputs.ref}}
     steps:
-      - name: Get Git Ref
+      - name: Get current git reference
         run: echo "::set-output name=ref::${{ github.ref }}"
   changed-files:
     needs: get-git-ref
-    name: Get Changed Files
+    name: Get all changed files
     runs-on: ubuntu-latest
     outputs:
       all_modified_files: ${{steps.changed-files.outputs.all_modified_files}}
     steps:
-      - name: Checkout Repo
+      - name: Checkout repository
         uses: actions/checkout@v2
         with:
           ref: ${{ needs.get-git-ref.outputs.ref }}
-      - name: Get changed files using defaults
+      - name: Get all changed files (using defaults)
         id: changed-files
         uses: tj-actions/changed-files@v18.5
       - name: List all modified files
@@ -40,7 +40,7 @@ jobs:
           done
   almalinux:
     needs: [ get-git-ref, changed-files ]
-    name: Alma Linux
+    name: Builds for Alma Linux
     if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/almalinux/')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
@@ -49,7 +49,7 @@ jobs:
       max-parallel: 2
   alpine:
     needs: [ get-git-ref, changed-files ]
-    name: Alpine Linux
+    name: Builds for Alpine Linux
     if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/alpine/')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
@@ -58,7 +58,7 @@ jobs:
       max-parallel: 2
   amazonlinux:
     needs: [ get-git-ref, changed-files ]
-    name: Amazon Linux
+    name: Builds for Amazon Linux
     if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/amazonlinux/')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
@@ -66,7 +66,7 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
   archlinux:
     needs: [ get-git-ref, changed-files ]
-    name: Arch Linux
+    name: Builds for Arch Linux
     if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/archlinux/')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
@@ -74,7 +74,7 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
   centos:
     needs: [ get-git-ref, changed-files ]
-    name: Centos
+    name: Builds for Centos
     if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/centos/')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
@@ -82,7 +82,7 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
   debian:
     needs: [ get-git-ref, changed-files ]
-    name: Debian
+    name: Builds for Debian
     if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/debian/')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
@@ -91,7 +91,7 @@ jobs:
       max-parallel: 4
   oraclelinux:
     needs: [ get-git-ref, changed-files ]
-    name: Oracle Linux
+    name: Builds for Oracle Linux
     if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/oraclelinux/')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
@@ -100,7 +100,7 @@ jobs:
       max-parallel: 2
   photon:
     needs: [ get-git-ref, changed-files ]
-    name: Photon
+    name: Builds for Photon
     if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/photon/')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
@@ -109,7 +109,7 @@ jobs:
       max-parallel: 2
   rockylinux:
     needs: [ get-git-ref, changed-files ]
-    name: Rocky Linux
+    name: Builds for Rocky Linux
     if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/rockylinux/')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
@@ -117,7 +117,7 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
   scientificlinux:
     needs: [ get-git-ref, changed-files ]
-    name: Scientific Linux
+    name: Builds for Scientific Linux
     if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/sl/')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
@@ -125,7 +125,7 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
   ubuntu:
     needs: [ get-git-ref, changed-files ]
-    name: Ubuntu
+    name: Builds for Ubuntu
     if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/ubuntu/')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
@@ -133,7 +133,7 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 2
   awesomebot:
-    name: Awesomebot
+    name: Run Awesomebot
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -149,7 +149,7 @@ jobs:
         run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/awesomebot/master/pipeline.sh)
   shellcheck:
     needs: get-git-ref
-    name: ShellCheck
+    name: Run ShellCheck
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -159,7 +159,7 @@ jobs:
         run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/shellcheck/master/pipeline.sh)
   yaml-lint:
     needs: get-git-ref
-    name: YAML Lint
+    name: Run YAML-Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
