@@ -1,4 +1,4 @@
-name: nightly
+name: Nightly builds
 on:
   schedule:
     - cron:  '30 0 * * 2-6'

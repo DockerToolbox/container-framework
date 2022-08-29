@@ -1,4 +1,4 @@
-name: manual
+name: Manual build containers
 on:
   workflow_dispatch:
     inputs:
