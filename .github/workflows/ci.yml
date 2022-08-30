@@ -40,13 +40,13 @@ jobs:
           done
   almalinux:
     needs: [ get-git-ref, changed-files ]
-    name: Builds for Alma Linux
+    name: Builds for AlmaLinux
     if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/almalinux/')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: almalinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 2
+      max-parallel: 4
   alpine:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Alpine Linux
@@ -55,7 +55,7 @@ jobs:
     with:
       directory: alpine
       ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 2
+      max-parallel: 4
   amazonlinux:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Amazon Linux
@@ -64,6 +64,7 @@ jobs:
     with:
       directory: amazonlinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 2
   archlinux:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Arch Linux
@@ -72,6 +73,7 @@ jobs:
     with:
       directory: archlinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 1
   centos:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Centos
@@ -80,6 +82,7 @@ jobs:
     with:
       directory: centos
       ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 1
   debian:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Debian
@@ -88,7 +91,7 @@ jobs:
     with:
       directory: debian
       ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 4
+      max-parallel: 8
   oraclelinux:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Oracle Linux
@@ -97,7 +100,7 @@ jobs:
     with:
       directory: oraclelinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 2
+      max-parallel: 6
   photon:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Photon
@@ -106,7 +109,7 @@ jobs:
     with:
       directory: photon
       ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 2
+      max-parallel: 3
   rockylinux:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Rocky Linux
@@ -115,6 +118,7 @@ jobs:
     with:
       directory: rockylinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 4
   scientificlinux:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Scientific Linux
@@ -123,6 +127,7 @@ jobs:
     with:
       directory: sl
       ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 1
   ubuntu:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Ubuntu
@@ -131,7 +136,7 @@ jobs:
     with:
       directory: ubuntu
       ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 2
+      max-parallel: 5
   awesomebot:
     name: Run Awesomebot
     runs-on: ubuntu-latest

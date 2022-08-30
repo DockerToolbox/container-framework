@@ -47,10 +47,10 @@ The framework attempts to support as many operating system distributions and ver
 
 | Operating System               | Official Base Image                                 | Our Tags                |
 | ------------------------------ | --------------------------------------------------- | ----------------------- |
-| Alma Linux 8                   | [Base Image](https://hub.docker.com/_/almalinux)    | 8 & latest              |
-| Alma Linux 8 Minimal           | [Base Image](https://hub.docker.com/_/almalinux)    | 8-minimal               |
-| Alma Linux 9                   | [Base Image](https://hub.docker.com/_/almalinux)    | 9                       |
-| Alma Linux 9 Minimal           | [Base Image](https://hub.docker.com/_/almalinux)    | 9-minimal               |
+| AlmaLinux 8                    | [Base Image](https://hub.docker.com/_/almalinux)    | 8 & latest              |
+| AlmaLinux 8 Minimal            | [Base Image](https://hub.docker.com/_/almalinux)    | 8-minimal               |
+| AlmaLinux 9                    | [Base Image](https://hub.docker.com/_/almalinux)    | 9                       |
+| AlmaLinux 9 Minimal            | [Base Image](https://hub.docker.com/_/almalinux)    | 9-minimal               |
 | Alpine 3.13                    | [Base Image](https://hub.docker.com/_/alpine)       | 3.13                    |
 | Alpine 3.14                    | [Base Image](https://hub.docker.com/_/alpine)       | 3.14                    |
 | Alpine 3.15                    | [Base Image](https://hub.docker.com/_/alpine)       | 3.15                    |
@@ -71,11 +71,15 @@ The framework attempts to support as many operating system distributions and ver
 | Oracle Linux 7 Slim            | [Base Image](https://hub.docker.com/_/oraclelinux)  | 7-slim                  |
 | Oracle Linux 8                 | [Base Image](https://hub.docker.com/_/oraclelinux)  | 8                       |
 | Oracle Linux 8 Slim            | [Base Image](https://hub.docker.com/_/oraclelinux)  | 8-slim                  |
-| Photon 1.0                     | [Base Image](https://hub.docker.com/_/photon)       | 1.0                     |
+| Oracle Linux 9                 | [Base Image](https://hub.docker.com/_/oraclelinux)  | 9                       |
+| Oracle Linux 9 Slim            | [Base Image](https://hub.docker.com/_/oraclelinux)  | 9-slim                  |
 | Photon 2.0                     | [Base Image](https://hub.docker.com/_/photon)       | 2.0                     |
 | Photon 3.0                     | [Base Image](https://hub.docker.com/_/photon)       | 3.0                     |
 | Photon 4.0                     | [Base Image](https://hub.docker.com/_/photon)       | 4.0 & latest            |
-| Rocky Linux 8                  | [Base Image](https://hub.docker.com/_/rockylinux)   | 8 & latest              |
+| Rocky Linux 8                  | [Base Image](https://hub.docker.com/_/rockylinux)   | 8                       |
+| Rocky Linux 8-minimal          | [Base Image](https://hub.docker.com/_/rockylinux)   | 8-minimal               |
+| Rocky Linux 9                  | [Base Image](https://hub.docker.com/_/rockylinux)   | 9                       |
+| Rocky Linux 9-minimal          | [Base Image](https://hub.docker.com/_/rockylinux)   | 9-minimal               |
 | Scientific Linux 7             | [Base Image](https://hub.docker.com/_/sl)           | 7 & latest              |
 | Ubuntu 14.04 (Trusty Tahr)     | [Base Image](https://hub.docker.com/_/ubuntu)       | 14.04 & trusty          |
 | Ubuntu 16.04 (Xenial Xerus)    | [Base Image](https://hub.docker.com/_/ubuntu)       | 16.04 & xenial          |
@@ -139,14 +143,18 @@ Dockerfiles
 │   ├── 7
 │   ├── 7-slim
 │   ├── 8
-│   └── 8-slim
+│   ├── 8-slim
+│   ├── 9
+│   └── 9-slim
 ├── photon
-│   ├── 1.0
 │   ├── 2.0
 │   ├── 3.0
 │   └── 4.0
 ├── rockylinux
-│   └── 8
+│   ├── 8
+│   ├── 8-minimal
+│   ├── 9
+│   └── 9-minimal
 ├── sl
 │   └── 7
 └── ubuntu
@@ -205,7 +213,7 @@ APK_VIRTUAL_PACKAGE=            # Alpine Virtual Packages (These are not version
 APT_PACKAGES=                   # Debian / Ubuntu Packages
 PACMAN_PACKAGES=                # Arch Linux
 TDNF_PACKAGES=                  # Photon Packages
-YUM_PACKAGES=                   # Alma Linux / Amazon Linux / Centos / Oracle Linux / Rocky Linux / Scientific Linux
+YUM_PACKAGES=                   # AlmaLinux / Amazon Linux / Centos / Oracle Linux / Rocky Linux / Scientific Linux
 YUM_GROUPS=                     # Yum Groups
 ```
 > Oracle Linux 8 slim comes with `microdnf` instead of `yum` but we simply install yum using `microdnf` and then carry on as normal.
@@ -214,7 +222,7 @@ YUM_GROUPS=                     # Yum Groups
 
 ```
 DISCOVER_BY=OS                  # Tell the version-grabber to use Operating System ID instead of package manager
-ALMA_PACKAGES=                  # Alma Linux Packages
+ALMA_PACKAGES=                  # AlmaLinux Packages
 ALPINE_PACKAGES=                # Alpine Packages
 ALPINE_VIRTUAL_PACKAGES=        # Alpine Virtual Packages (These are not versioned)
 AMAZON_PACKAGES=                # Amazon Linux Packages
@@ -286,7 +294,7 @@ There is a cleanup symlink in each container directory which points to the corre
 | pacman-cleanup.tpl          | Cleanup for Arch Linux based containers.                                                  |
 | tdnf-cleanup.tpl            | Cleanup for Photon Linux based containers.                                                |
 | yum-cleanup-with-leaves.tpl | Cleanup for Amazon Linux, Centos 7 and Scientific Linux based containers.                 |
-| yum-cleanup.tpl             | Cleanup for Alma Linux, Oracle Linux (excluding 8-slim) and Rocky Linux based containers. |
+| yum-cleanup.tpl             | Cleanup for AlmaLinux, Oracle Linux (excluding 8-slim) and Rocky Linux based containers.  |
 
 ### Helper Script
 

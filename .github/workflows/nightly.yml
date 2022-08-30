@@ -14,7 +14,7 @@ jobs:
         run: echo "::set-output name=ref::${{ github.ref }}"
   almalinux:
     needs: get-git-ref
-    name: Alma Linux
+    name: AlmaLinux
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: almalinux
