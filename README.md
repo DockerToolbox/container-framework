@@ -290,7 +290,7 @@ There is a cleanup symlink in each container directory which points to the corre
 | --------------------------- | ----------------------------------------------------------------------------------------- |
 | apk-cleanup.tpl             | Cleanup for Alpine based containers.                                                      |
 | apt-cleanup.tpl             | Cleanup for Debian / Ubuntu based containers.                                             |
-| microdns-cleanup.tpl        | Cleanup for Oracle Linux 8-slim based containers.                                         |
+| microdns-cleanup.tpl        | Cleanup for Oracle Linux slim based containers.                                           |
 | pacman-cleanup.tpl          | Cleanup for Arch Linux based containers.                                                  |
 | tdnf-cleanup.tpl            | Cleanup for Photon Linux based containers.                                                |
 | yum-cleanup-with-leaves.tpl | Cleanup for Amazon Linux, Centos 7 and Scientific Linux based containers.                 |
