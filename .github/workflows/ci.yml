@@ -60,7 +60,7 @@ jobs:
   almalinux:
     needs: [ get-git-ref, changed-files ]
     name: Builds for AlmaLinux
-    if: ${{ steps.changed-files.outputs.any_modified == 'true' }}
+    if: ${{ needs.changed-files.outputs.any_modified == 'true' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: almalinux
@@ -70,7 +70,7 @@ jobs:
   alpine:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Alpine Linux
-    if: ${{ steps.changed-files.outputs.any_modified == 'true' }}
+    if: ${{ needs.changed-files.outputs.any_modified == 'true' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: alpine
@@ -80,7 +80,7 @@ jobs:
   amazonlinux:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Amazon Linux
-    if: ${{ steps.changed-files.outputs.any_modified == 'true' }}
+    if: ${{ needs.changed-files.outputs.any_modified == 'true' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: amazonlinux
@@ -90,7 +90,7 @@ jobs:
   archlinux:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Arch Linux
-    if: ${{ steps.changed-files.outputs.any_modified == 'true' }}
+    if: ${{ needs.changed-files.outputs.any_modified == 'true' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: archlinux
@@ -100,7 +100,7 @@ jobs:
   centos:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Centos
-    if: ${{ steps.changed-files.outputs.any_modified == 'true' }}
+    if: ${{ needs.changed-files.outputs.any_modified == 'true' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: centos
@@ -110,7 +110,7 @@ jobs:
   debian:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Debian
-    if: ${{ steps.changed-files.outputs.any_modified == 'true' }}
+    if: ${{ needs.changed-files.outputs.any_modified == 'true' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: debian
@@ -120,7 +120,7 @@ jobs:
   oraclelinux:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Oracle Linux
-    if: ${{ steps.changed-files.outputs.any_modified == 'true' }}
+    if: ${{ needs.changed-files.outputs.any_modified == 'true' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: oraclelinux
@@ -130,7 +130,7 @@ jobs:
   photon:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Photon
-    if: ${{ steps.changed-files.outputs.any_modified == 'true' }}
+    if: ${{ needs.changed-files.outputs.any_modified == 'true' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: photon
@@ -140,7 +140,7 @@ jobs:
   rockylinux:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Rocky Linux
-    if: ${{ steps.changed-files.outputs.any_modified == 'true' }}
+    if: ${{ needs.changed-files.outputs.any_modified == 'true' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: rockylinux
@@ -150,7 +150,7 @@ jobs:
   scientificlinux:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Scientific Linux
-    if: ${{ steps.changed-files.outputs.any_modified == 'true' }}
+    if: ${{ needs.changed-files.outputs.any_modified == 'true' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: sl
@@ -160,7 +160,7 @@ jobs:
   ubuntu:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Ubuntu
-    if: ${{ steps.changed-files.outputs.any_modified == 'true' }}
+    if: ${{ needs.changed-files.outputs.any_modified == 'true' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: ubuntu
