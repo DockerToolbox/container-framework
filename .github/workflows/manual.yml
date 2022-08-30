@@ -24,6 +24,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
         with:
+          fetch-depth: 0
           ref: ${{ needs.get-git-ref.outputs.ref }}
       - name: Get changed files using defaults
         id: changed-files
