@@ -22,6 +22,7 @@ jobs:
           webhook-url: ${{secrets.SLACK_WEBHOOK_URL}}
 
   get-git-ref:
+    needs: slack-message-start
     name: Get current git reference
     runs-on: ubuntu-latest
     outputs:
@@ -169,10 +170,13 @@ jobs:
       max-parallel: 5
 
   awesomebot:
+    needs: get-git-ref
     name: Run Awesomebot
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ needs.get-git-ref.outputs.ref }}
       - name: Set up Ruby 3.0
         uses: ruby/setup-ruby@v1
         with:
@@ -214,7 +218,6 @@ jobs:
     if: always()
     name: Slack Post Workflow Notification
     needs:
-      - slack-message-start
       - almalinux
       - alpine
       - amazonlinux
