@@ -131,14 +131,14 @@ Dockerfiles
 ├── centos
 │   └── 7
 ├── debian
+│   ├── 9
+│   ├── 9-slim
 │   ├── 10
 │   ├── 10-slim
 │   ├── 11
 │   ├── 11-slim
 │   ├── 12
-│   ├── 12-slim
-│   ├── 9
-│   └── 9-slim
+│   └── 12-slim
 ├── oraclelinux
 │   ├── 7
 │   ├── 7-slim

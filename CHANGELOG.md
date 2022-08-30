@@ -9,6 +9,8 @@ This changelog was automatically generated using [Caretaker](https://github.com/
 
 - Make workflows more effecient [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
 
+- Make workflows more effecient [`[0697496]`](https://github.com/DockerToolbox/container-framework/commit/06974969b8652b967ff5295398d31a87496b29ca)
+
 - Make workflows more effecient [`[9300879]`](https://github.com/DockerToolbox/container-framework/commit/9300879d6c86fe3b6a662ef365c750126b86fe5c)
 
 - update wofkflows [`[03d9653]`](https://github.com/DockerToolbox/container-framework/commit/03d96531925c564ab488a4d6478e99185d968ea4)

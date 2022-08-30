@@ -1,1 +1,1 @@
-../../../../Templates/yum-cleanup.tpl
+../../../../Templates/microdnf-cleanup.tpl
