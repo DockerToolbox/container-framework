@@ -29,6 +29,7 @@ jobs:
     steps:
       - name: Get current git reference
         run: echo "::set-output name=ref::${{ github.ref }}"
+
   changed-files:
     needs: get-git-ref
     name: Get all changed files
@@ -44,110 +45,128 @@ jobs:
       - name: Get all changed files (using defaults)
         id: changed-files
         uses: tj-actions/changed-files@v29.0.2
+        with:
+          files: |
+            Config/**
+            Templates/**
+            Scripts/**
+            Dockerfiles/**
       - name: List all modified files
         run: |
           for file in ${{ steps.changed-files.outputs.all_modified_files }}; do
             echo "$file was modified"
           done
+
   almalinux:
     needs: [ get-git-ref, changed-files ]
     name: Builds for AlmaLinux
-    if: startsWith(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/almalinux/') || startsWith(needs.changed-files.outputs.all_modified_files, 'Config/') || startsWith(needs.changed-files.outputs.all_modified_files, 'Templates/') || startsWith(needs.changed-files.outputs.all_modified_files, 'Scripts/')
+    if: ${{ steps.changed-files.outputs.any_modified == 'true' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: almalinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 4
+
   alpine:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Alpine Linux
-    if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/alpine/')
+    if: ${{ steps.changed-files.outputs.any_modified == 'true' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: alpine
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 4
+
   amazonlinux:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Amazon Linux
-    if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/amazonlinux/')
+    if: ${{ steps.changed-files.outputs.any_modified == 'true' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: amazonlinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 2
+
   archlinux:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Arch Linux
-    if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/archlinux/')
+    if: ${{ steps.changed-files.outputs.any_modified == 'true' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: archlinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 1
+
   centos:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Centos
-    if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/centos/')
+    if: ${{ steps.changed-files.outputs.any_modified == 'true' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: centos
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 1
+
   debian:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Debian
-    if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/debian/')
+    if: ${{ steps.changed-files.outputs.any_modified == 'true' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: debian
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 8
+
   oraclelinux:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Oracle Linux
-    if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/oraclelinux/')
+    if: ${{ steps.changed-files.outputs.any_modified == 'true' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: oraclelinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 6
+
   photon:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Photon
-    if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/photon/')
+    if: ${{ steps.changed-files.outputs.any_modified == 'true' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: photon
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 3
+
   rockylinux:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Rocky Linux
-    if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/rockylinux/')
+    if: ${{ steps.changed-files.outputs.any_modified == 'true' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: rockylinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 4
+
   scientificlinux:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Scientific Linux
-    if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/sl/')
+    if: ${{ steps.changed-files.outputs.any_modified == 'true' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: sl
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 1
+
   ubuntu:
     needs: [ get-git-ref, changed-files ]
     name: Builds for Ubuntu
-    if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/ubuntu/')
+    if: ${{ steps.changed-files.outputs.any_modified == 'true' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: ubuntu
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 5
+
   awesomebot:
     name: Run Awesomebot
     runs-on: ubuntu-latest
@@ -163,6 +182,7 @@ jobs:
           EXCLUDE_FILES: "CHANGELOG.md,Config/.*"
           WHITELIST: "https://img.shields.io"
         run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/awesomebot/master/pipeline.sh)
+
   shellcheck:
     needs: get-git-ref
     name: Run ShellCheck
@@ -173,6 +193,7 @@ jobs:
           ref: ${{ needs.get-git-ref.outputs.ref }}
       - name: Run Shellcheck
         run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/shellcheck/master/pipeline.sh)
+
   yaml-lint:
     needs: get-git-ref
     name: Run YAML-Lint
@@ -187,6 +208,7 @@ jobs:
           ruby-version: 3.0
       - name: Run YAML-Lint
         run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/yaml-lint/master/pipeline.sh)
+
   slack-message-finish:
     if: always()
     name: Slack Post Workflow Notification
