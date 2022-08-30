@@ -40,7 +40,7 @@ jobs:
     with:
       directory: almalinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 2
+      max-parallel: 4
       force-build: ${{ fromJSON(github.event.inputs.force-build) }}
   alpine:
     needs: get-git-ref
@@ -49,7 +49,7 @@ jobs:
     with:
       directory: alpine
       ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 2
+      max-parallel: 4
       force-build: ${{ fromJSON(github.event.inputs.force-build) }}
   amazonlinux:
     needs: get-git-ref
@@ -58,6 +58,7 @@ jobs:
     with:
       directory: amazonlinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 2
       force-build: ${{ fromJSON(github.event.inputs.force-build) }}
   archlinux:
     needs: get-git-ref
@@ -66,6 +67,7 @@ jobs:
     with:
       directory: archlinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 1
       force-build: ${{ fromJSON(github.event.inputs.force-build) }}
   centos:
     needs: get-git-ref
@@ -74,6 +76,7 @@ jobs:
     with:
       directory: centos
       ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 1
       force-build: ${{ fromJSON(github.event.inputs.force-build) }}
   debian:
     needs: get-git-ref
@@ -82,7 +85,7 @@ jobs:
     with:
       directory: debian
       ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 4
+      max-parallel: 8
       force-build: ${{ fromJSON(github.event.inputs.force-build) }}
   oraclelinux:
     needs: get-git-ref
@@ -91,7 +94,7 @@ jobs:
     with:
       directory: oraclelinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 2
+      max-parallel: 6
       force-build: ${{ fromJSON(github.event.inputs.force-build) }}
   photon:
     needs: get-git-ref
@@ -100,7 +103,7 @@ jobs:
     with:
       directory: photon
       ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 2
+      max-parallel: 3
       force-build: ${{ fromJSON(github.event.inputs.force-build) }}
   rockylinux:
     needs: get-git-ref
@@ -109,6 +112,7 @@ jobs:
     with:
       directory: rockylinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 4
       force-build: ${{ fromJSON(github.event.inputs.force-build) }}
   scientificlinux:
     needs: get-git-ref
@@ -117,6 +121,7 @@ jobs:
     with:
       directory: sl
       ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 1
       force-build: ${{ fromJSON(github.event.inputs.force-build) }}
   ubuntu:
     needs: get-git-ref
@@ -125,7 +130,7 @@ jobs:
     with:
       directory: ubuntu
       ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 2
+      max-parallel: 5
       force-build: ${{ fromJSON(github.event.inputs.force-build) }}
   awesomebot:
     name: Awesomebot

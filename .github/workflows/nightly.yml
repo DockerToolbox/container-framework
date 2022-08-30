@@ -19,7 +19,7 @@ jobs:
     with:
       directory: almalinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 2
+      max-parallel: 4
       force-build: true
   alpine:
     needs: get-git-ref
@@ -28,7 +28,7 @@ jobs:
     with:
       directory: alpine
       ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 2
+      max-parallel: 4
       force-build: true
   amazonlinux:
     needs: get-git-ref
@@ -37,6 +37,7 @@ jobs:
     with:
       directory: amazonlinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 2
       force-build: true
   archlinux:
     needs: get-git-ref
@@ -45,6 +46,7 @@ jobs:
     with:
       directory: archlinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 1
       force-build: true
   centos:
     needs: get-git-ref
@@ -53,6 +55,7 @@ jobs:
     with:
       directory: centos
       ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 1
       force-build: true
   debian:
     needs: get-git-ref
@@ -61,7 +64,7 @@ jobs:
     with:
       directory: debian
       ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 4
+      max-parallel: 8
       force-build: true
   oraclelinux:
     needs: get-git-ref
@@ -70,7 +73,7 @@ jobs:
     with:
       directory: oraclelinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 2
+      max-parallel: 6
       force-build: true
   photon:
     needs: get-git-ref
@@ -79,7 +82,7 @@ jobs:
     with:
       directory: photon
       ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 2
+      max-parallel: 3
       force-build: true
   rockylinux:
     needs: get-git-ref
@@ -88,6 +91,7 @@ jobs:
     with:
       directory: rockylinux
       ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 4
       force-build: true
   scientificlinux:
     needs: get-git-ref
@@ -96,6 +100,7 @@ jobs:
     with:
       directory: sl
       ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 1
       force-build: true
   ubuntu:
     needs: get-git-ref
@@ -104,7 +109,7 @@ jobs:
     with:
       directory: ubuntu
       ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 2
+      max-parallel: 5
       force-build: true
   awesomebot:
     needs: get-git-ref
