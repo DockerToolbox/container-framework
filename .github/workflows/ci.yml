@@ -36,6 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       all_modified_files: ${{steps.changed-files.outputs.all_modified_files}}
+      any_modified: ${{steps.changed-files.outputs.any_modified}}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
