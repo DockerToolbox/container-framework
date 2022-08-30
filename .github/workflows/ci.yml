@@ -52,7 +52,7 @@ jobs:
   almalinux:
     needs: [ get-git-ref, changed-files ]
     name: Builds for AlmaLinux
-    if: contains(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/almalinux/')
+    if: startsWith(needs.changed-files.outputs.all_modified_files, 'Dockerfiles/almalinux/') || startsWith(needs.changed-files.outputs.all_modified_files, 'Config/') || startsWith(needs.changed-files.outputs.all_modified_files, 'Templates/') || startsWith(needs.changed-files.outputs.all_modified_files, 'Scripts/')
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: almalinux
