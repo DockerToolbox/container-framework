@@ -18,6 +18,7 @@ jobs:
       - name: Slack message
         uses: magnetikonline/action-slack-workflow-start-finish@v2
         with:
+          channel: ${{secrets.SLACK_CHANNEL}}
           webhook-url: ${{secrets.SLACK_WEBHOOK_URL}}
 
   get-git-ref:
@@ -237,4 +238,5 @@ jobs:
         uses: magnetikonline/action-slack-workflow-start-finish@v2
         with:
           result: ${{ join(needs.*.result,'|') }}
+          channel: ${{secrets.SLACK_CHANNEL}}
           webhook-url: ${{secrets.SLACK_WEBHOOK_URL}}
