@@ -3,8 +3,8 @@
         <img src="https://cdn.wolfsoftware.com/assets/images/github/organisations/dockertoolbox/black-and-white-circle-256.png" alt="DockerToolbox logo" />
     </a>
     <br />
-    <a href="https://github.com/DockerToolbox/container-framework/actions/workflows/ci.yml">
-        <img src="https://img.shields.io/github/workflow/status/DockerToolbox/container-framework/ci/master?style=for-the-badge" alt="Github Build Status">
+    <a href="https://github.com/DockerToolbox/container-framework/actions/workflows/cicd-pipeline.yml">
+        <img src="https://img.shields.io/github/workflow/status/DockerToolbox/container-framework/CICD%20Pipeline/master?style=for-the-badge" alt="Github Build Status">
     </a>
     <a href="https://github.com/DockerToolbox/container-framework/releases/latest">
         <img src="https://img.shields.io/github/v/release/DockerToolbox/container-framework?color=blue&label=Latest%20Release&style=for-the-badge" alt="Release">

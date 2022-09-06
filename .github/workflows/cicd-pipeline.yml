@@ -1,4 +1,4 @@
-name: ci
+name: CICD Pipeline
 on:
   push:
     branches:
@@ -234,7 +234,7 @@ jobs:
       - yaml-lint
     runs-on: ubuntu-latest
     steps:
-      - name: Slack message
+      - name: Slack Post Workflow Notification
         uses: magnetikonline/action-slack-workflow-start-finish@v2
         with:
           result: ${{ join(needs.*.result,'|') }}
