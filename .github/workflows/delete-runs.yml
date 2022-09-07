@@ -16,10 +16,10 @@ on:
       delete_workflow_by_state_pattern:
         description: 'Remove workflow by state: active, deleted, disabled_fork, disabled_inactivity, disabled_manually'
         required: true
-        default: "All"
+        default: "all"
         type: choice
         options:
-          - "All"
+          - all
           - active
           - deleted
           - disabled_inactivity
@@ -57,6 +57,6 @@ jobs:
           repository: ${{ github.repository }}
           retain_days: ${{ env.DAYS }}
           keep_minimum_runs: ${{ env.MINIMUM_RUNS }}
-          delete_workflow_pattern: ${{ env.DELETE_WORKFLOW_PATTERN }}
-          delete_workflow_by_state_pattern: ${{ env.DELETE_WORKFLOW_BY_STATE_PATTERN }}
+          delete_workflow_pattern: "${{ env.DELETE_WORKFLOW_PATTERN }}"
+          delete_workflow_by_state_pattern: "${{ env.DELETE_WORKFLOW_BY_STATE_PATTERN }}"
           dry_run: ${{ env.DEFAULT_DRY_RUN }}
