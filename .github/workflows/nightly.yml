@@ -4,18 +4,7 @@ on:
     - cron:  '30 0 * * 2-6'
 
 jobs:
-  slack-message-start:
-    name: Slack message start
-    runs-on: ubuntu-latest
-    steps:
-      - name: Slack message
-        uses: magnetikonline/action-slack-workflow-start-finish@v2
-        with:
-          channel: ${{secrets.SLACK_CHANNEL}}
-          webhook-url: ${{secrets.SLACK_WEBHOOK_URL}}
-
   get-git-ref:
-    needs: slack-message-start
     name: Get Git Ref
     runs-on: ubuntu-latest
     outputs:
@@ -199,9 +188,10 @@ jobs:
       - yaml-lint
     runs-on: ubuntu-latest
     steps:
-      - name: Slack message
-        uses: magnetikonline/action-slack-workflow-start-finish@v2
+      - name: Slack Workflow Notifications
+        uses: Gamesight/slack-workflow-status@v1.1.0
         with:
-          result: ${{ join(needs.*.result,'|') }}
-          channel: ${{secrets.SLACK_CHANNEL}}
-          webhook-url: ${{secrets.SLACK_WEBHOOK_URL}}
+          repo_token: ${{secrets.GITHUB_TOKEN}}
+          slack_webhook_url: ${{secrets.SLACK_WEBHOOK_URL}}
+          include_jobs: on-failure
+          include_commit_message: true

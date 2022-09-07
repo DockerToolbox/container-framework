@@ -11,18 +11,7 @@ on:
       - main
 
 jobs:
-  slack-message-start:
-    name: Slack message start
-    runs-on: ubuntu-latest
-    steps:
-      - name: Slack message
-        uses: magnetikonline/action-slack-workflow-start-finish@v2
-        with:
-          channel: ${{secrets.SLACK_CHANNEL}}
-          webhook-url: ${{secrets.SLACK_WEBHOOK_URL}}
-
   get-git-ref:
-    needs: slack-message-start
     name: Get current git reference
     runs-on: ubuntu-latest
     outputs:
@@ -237,6 +226,7 @@ jobs:
       - name: Slack Workflow Notifications
         uses: Gamesight/slack-workflow-status@v1.1.0
         with:
+          repo_token: ${{secrets.GITHUB_TOKEN}}
           slack_webhook_url: ${{secrets.SLACK_WEBHOOK_URL}}
-          include_jobs: on-fail
+          include_jobs: on-failure
           include_commit_message: true
