@@ -7,7 +7,9 @@ This changelog was automatically generated using [Caretaker](https://github.com/
 
 ### [Unreleased](https://github.com/DockerToolbox/container-framework/compare/v0.1.3...HEAD)
 
-- Fix pipeline in README [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
+- new slack notifier test [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
+
+- Fix pipeline in README [`[2b41d90]`](https://github.com/DockerToolbox/container-framework/commit/2b41d909c1956136f069f6f0541c7a4600031fb3)
 
 - Updated workflows [`[50f9072]`](https://github.com/DockerToolbox/container-framework/commit/50f907215cb873f7852740a40bf717e1f085e4b5)
 
