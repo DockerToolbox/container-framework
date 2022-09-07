@@ -16,12 +16,13 @@ on:
       delete_workflow_by_state_pattern:
         description: 'Remove workflow by state: active, deleted, disabled_fork, disabled_inactivity, disabled_manually'
         required: true
-        default: "all"
+        default: 'all'
         type: choice
         options:
           - all
           - active
           - deleted
+          - disabled_fork
           - disabled_inactivity
           - disabled_manually
       dry_run:
@@ -40,7 +41,7 @@ jobs:
 #          DEFAULT_MINIMUM_RUNS: 6
           DEFAULT_DAYS: 14
           DEFAULT_MINIMUM_RUNS: 3
-          DEFAULT_DELETE_WORKFLOW_PATTERN: 'all'
+          DEFAULT_DELETE_WORKFLOW_PATTERN: ''
           DEFAULT_DELETE_WORKFLOW_BY_STATE_PATTERN: 'all'
           DEFAULT_DRY_RUN: false
         run: |
