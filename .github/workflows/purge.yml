@@ -7,7 +7,7 @@ on:
 jobs:
   purge_obsolete_workflows:
     runs-on: ubuntu-latest
-      steps:
-        - uses: otto-contentfactory/purge-workflow-runs@v1
-          with:
-            token: ${{ github.token }}
+    steps:
+      - uses: otto-contentfactory/purge-workflow-runs@v1
+        with:
+          token: ${{ github.token }}
