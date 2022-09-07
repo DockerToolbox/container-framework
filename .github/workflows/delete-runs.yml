@@ -1,17 +1,62 @@
-name: Automatically delete old workflow runs
+name: Delete old workflow runs
 on:
   schedule:
     - cron: '0 4 * * 1'
-# Run weekly, at 04:00 on a Monday.
+  workflow_dispatch:
+    inputs:
+      days:
+        description: 'Number of days.'
+        required: true
+        default: 30
+      minimum_runs:
+        description: 'The minimum runs to keep for each workflow.'
+        required: true
+        default: 6
+      delete_workflow_pattern:
+        description: 'The name or filename of the workflow. if not set then it will target all workflows.'
+        required: false
+      delete_workflow_by_state_pattern:
+        description: 'Remove workflow by state: active, deleted, disabled_fork, disabled_inactivity, disabled_manually'
+        required: true
+        default: "All"
+        type: choice
+        options:
+          - "All"
+          - active
+          - deleted
+          - disabled_inactivity
+          - disabled_manually
+      dry_run:
+        description: 'Only log actions, do not perform any delete operations.'
+        required: false
 
 jobs:
-  del_runs:
-    runs-on: ubuntu-latest
+  print_text:
+    runs-on: 'ubuntu-20.04'
     steps:
+      - name: Set the variables
+        env:
+#          DEFAULT_DAYS: 30
+#          DEFAULT_MINIMUM_RUNS: 6
+          DEFAULT_DAYS: 14
+          DEFAULT_MINIMUM_RUNS: 3
+          DEFAULT_DELETE_WORKFLOW_PATTERN: 'all'
+          DEFAULT_DELETE_WORKFLOW_BY_STATE_PATTERN: 'all'
+          DEFAULT_DRY_RUN: false
+        run: |
+          echo "DAYS=${{ github.event.inputs.days || env.DEFAULT_DAYS }}" >> $GITHUB_ENV
+          echo "MINIMUM_RUNS=${{ github.event.inputs.minimum_runs || env.DEFAULT_MINIMUM_RUNS }}" >> $GITHUB_ENV
+          echo "DELETE_WORKFLOW_PATTERN=${{ github.event.inputs.delete_workflow_pattern || env.DEFAULT_DELETE_WORKFLOW_PATTERN }}" >> $GITHUB_ENV
+          echo "DELETE_WORKFLOW_BY_STATE_PATTERN=${{ github.event.inputs.delete_workflow_by_state_pattern || env.DEFAULT_DELETE_WORKFLOW_BY_STATE_PATTERN }}" >> $GITHUB_ENV
+          echo "DEFAULT_DRY_RUN=${{ github.event.inputs.dry_run || env.DEFAULT_DRY_RUN }}" >> $GITHUB_ENV
+
       - name: Delete workflow runs
         uses: Mattraks/delete-workflow-runs@v2
         with:
           token: ${{ github.token }}
           repository: ${{ github.repository }}
-          retain_days: 14
-          keep_minimum_runs: 6
+          retain_days: ${{ env.DAYS }}
+          keep_minimum_runs: ${{ env.MINIMUM_RUNS }}
+          delete_workflow_pattern: ${{ env.DELETE_WORKFLOW_PATTERN }}
+          delete_workflow_by_state_pattern: ${{ env.DELETE_WORKFLOW_BY_STATE_PATTERN }}
+          dry_run: ${{ env.DEFAULT_DRY_RUN }}
