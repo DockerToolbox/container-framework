@@ -9,6 +9,8 @@ This changelog was automatically generated using [Caretaker](https://github.com/
 
 - Update workflows [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
 
+- Update workflows [`[bffaf5e]`](https://github.com/DockerToolbox/container-framework/commit/bffaf5e7532aff561879f75ac1e631ffc7c8729b)
+
 - Update workflows [`[23b7424]`](https://github.com/DockerToolbox/container-framework/commit/23b7424ae6a397380381b9622b3b41b02f272186)
 
 - Update workflows [`[2b63848]`](https://github.com/DockerToolbox/container-framework/commit/2b638480a9a1cb50f91bc48af6f2cc6999587054)
