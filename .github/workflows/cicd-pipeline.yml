@@ -1,223 +1,54 @@
 name: CICD Pipeline
-on:
-  push:
-    branches:
-      - '**'
-    tags-ignore:
-      - '**'
-  pull_request:
-    branches:
-      - master
-      - main
+on: [push, pull_request]
 
 jobs:
-  get-git-ref:
-    name: Get current git reference
+  slack-message-start:
+    name: Slack message start
     runs-on: ubuntu-latest
-    outputs:
-      ref: ${{steps.get-git-ref.outputs.ref}}
     steps:
-      - name: Get current git reference
-        run: echo "::set-output name=ref::${{ github.ref }}"
-
-  changed-files:
-    needs: get-git-ref
-    name: Get all changed files
-    runs-on: ubuntu-latest
-    outputs:
-      all_modified_files: ${{steps.changed-files.outputs.all_modified_files}}
-      any_modified: ${{steps.changed-files.outputs.any_modified}}
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - name: Slack message
+        uses: magnetikonline/action-slack-workflow-start-finish@v2
         with:
-          fetch-depth: 0
-          ref: ${{ needs.get-git-ref.outputs.ref }}
-      - name: Get all changed files (using defaults)
-        id: changed-files
-        uses: tj-actions/changed-files@v29.0.2
-        with:
-          files: |
-            Config/**
-            Templates/**
-            Scripts/**
-            Dockerfiles/**
-      - name: List all modified files
-        run: |
-          for file in ${{ steps.changed-files.outputs.all_modified_files }}; do
-            echo "$file was modified"
-          done
-
-  almalinux:
-    needs: [ get-git-ref, changed-files ]
-    name: Builds for AlmaLinux
-    if: needs.changed-files.outputs.any_modified == 'true'
-    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
-    with:
-      directory: almalinux
-      ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 4
-
-  alpine:
-    needs: [ get-git-ref, changed-files ]
-    name: Builds for Alpine Linux
-    if: needs.changed-files.outputs.any_modified == 'true'
-    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
-    with:
-      directory: alpine
-      ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 4
-
-  amazonlinux:
-    needs: [ get-git-ref, changed-files ]
-    name: Builds for Amazon Linux
-    if: needs.changed-files.outputs.any_modified == 'true'
-    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
-    with:
-      directory: amazonlinux
-      ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 2
-
-  archlinux:
-    needs: [ get-git-ref, changed-files ]
-    name: Builds for Arch Linux
-    if: needs.changed-files.outputs.any_modified == 'true'
-    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
-    with:
-      directory: archlinux
-      ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 1
-
-  centos:
-    needs: [ get-git-ref, changed-files ]
-    name: Builds for Centos
-    if: needs.changed-files.outputs.any_modified == 'true'
-    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
-    with:
-      directory: centos
-      ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 1
-
-  debian:
-    needs: [ get-git-ref, changed-files ]
-    name: Builds for Debian
-    if: needs.changed-files.outputs.any_modified == 'true'
-    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
-    with:
-      directory: debian
-      ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 8
-
-  oraclelinux:
-    needs: [ get-git-ref, changed-files ]
-    name: Builds for Oracle Linux
-    if: needs.changed-files.outputs.any_modified == 'true'
-    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
-    with:
-      directory: oraclelinux
-      ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 6
-
-  photon:
-    needs: [ get-git-ref, changed-files ]
-    name: Builds for Photon
-    if: needs.changed-files.outputs.any_modified == 'true'
-    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
-    with:
-      directory: photon
-      ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 3
-
-  rockylinux:
-    needs: [ get-git-ref, changed-files ]
-    name: Builds for Rocky Linux
-    if: needs.changed-files.outputs.any_modified == 'true'
-    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
-    with:
-      directory: rockylinux
-      ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 4
-
-  scientificlinux:
-    needs: [ get-git-ref, changed-files ]
-    name: Builds for Scientific Linux
-    if: needs.changed-files.outputs.any_modified == 'true'
-    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
-    with:
-      directory: sl
-      ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 1
-
-  ubuntu:
-    needs: [ get-git-ref, changed-files ]
-    name: Builds for Ubuntu
-    if: needs.changed-files.outputs.any_modified == 'true'
-    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
-    with:
-      directory: ubuntu
-      ref: ${{ needs.get-git-ref.outputs.ref }}
-      max-parallel: 5
-
+          channel: ${{secrets.SLACK_CHANNEL}}
+          webhook-url: ${{secrets.SLACK_WEBHOOK_URL}}
   awesomebot:
-    needs: get-git-ref
-    name: Run Awesomebot
+    name: Awesomebot
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          ref: ${{ needs.get-git-ref.outputs.ref }}
-      - name: Set up Ruby 3.0
+      - name: Set up Ruby 3.1
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0
+          ruby-version: 3.1
       - name: Run Awesomebot
         env:
           FLAGS: "default"
-          EXCLUDE_FILES: "CHANGELOG.md,Config/.*"
+          EXCLUDE_FILES: "CHANGELOG.md"
           WHITELIST: "https://img.shields.io"
         run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/awesomebot/master/pipeline.sh)
-
   shellcheck:
-    needs: get-git-ref
-    name: Run ShellCheck
+    name: ShellCheck
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          ref: ${{ needs.get-git-ref.outputs.ref }}
       - name: Run Shellcheck
         run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/shellcheck/master/pipeline.sh)
-
   yaml-lint:
-    needs: get-git-ref
-    name: Run YAML-Lint
+    name: YAML Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          ref: ${{ needs.get-git-ref.outputs.ref }}
-      - name: Set up Ruby 3.0
+      - name: Set up Ruby 3.1
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0
+          ruby-version: 3.1
       - name: Run YAML-Lint
         run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/yaml-lint/master/pipeline.sh)
-
-  slack-message-finish:
+  slack-workflow-status:
     if: always()
     name: Slack Post Workflow Notification
     needs:
-      - almalinux
-      - alpine
-      - amazonlinux
-      - archlinux
-      - centos
-      - debian
-      - oraclelinux
-      - photon
-      - rockylinux
-      - scientificlinux
-      - ubuntu
+      - slack-message-start
       - awesomebot
       - shellcheck
       - yaml-lint

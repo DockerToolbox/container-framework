@@ -1,4 +1,4 @@
-name: 'Stale issue/pr handler'
+name: Stale issue/pr handler
 on:
   workflow_dispatch:
   schedule:

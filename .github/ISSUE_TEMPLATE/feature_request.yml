@@ -1,7 +1,7 @@
 name: Request a new feature
 description: Got an idea for a new feature? Let us know what you want and we will see if we can add it
 title: "[Feature Request]: "
-labels: [enhancement, triage]
+labels: ["type: feature", "state: triage"]
 assignees:
   - tgwolf
 body:
