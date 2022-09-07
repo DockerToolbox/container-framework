@@ -9,7 +9,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  stale:
+  handle-stale-entries:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/stale@v5.1.1

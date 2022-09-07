@@ -2,15 +2,6 @@ name: CICD Pipeline
 on: [push, pull_request]
 
 jobs:
-  slack-message-start:
-    name: Slack message start
-    runs-on: ubuntu-latest
-    steps:
-      - name: Slack message
-        uses: magnetikonline/action-slack-workflow-start-finish@v2
-        with:
-          channel: ${{secrets.SLACK_CHANNEL}}
-          webhook-url: ${{secrets.SLACK_WEBHOOK_URL}}
   awesomebot:
     name: Awesomebot
     runs-on: ubuntu-latest
@@ -26,6 +17,7 @@ jobs:
           EXCLUDE_FILES: "CHANGELOG.md"
           WHITELIST: "https://img.shields.io"
         run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/awesomebot/master/pipeline.sh)
+
   shellcheck:
     name: ShellCheck
     runs-on: ubuntu-latest
@@ -33,6 +25,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Run Shellcheck
         run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/shellcheck/master/pipeline.sh)
+
   yaml-lint:
     name: YAML Lint
     runs-on: ubuntu-latest
@@ -44,11 +37,11 @@ jobs:
           ruby-version: 3.1
       - name: Run YAML-Lint
         run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/yaml-lint/master/pipeline.sh)
+
   slack-workflow-status:
     if: always()
     name: Slack Post Workflow Notification
     needs:
-      - slack-message-start
       - awesomebot
       - shellcheck
       - yaml-lint
@@ -57,7 +50,7 @@ jobs:
       - name: Slack Workflow Notifications
         uses: Gamesight/slack-workflow-status@v1.1.0
         with:
-          repo_token: ${{secrets.GITHUB_TOKEN}}
-          slack_webhook_url: ${{secrets.SLACK_WEBHOOK_URL}}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
           include_jobs: on-failure
           include_commit_message: true
