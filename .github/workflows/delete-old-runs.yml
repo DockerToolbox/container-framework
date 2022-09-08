@@ -11,16 +11,14 @@ on:
         required: true
         default: 6
   schedule:
-    - cron: '0 4 * * 1'
+    - cron: '0 4 * * *'
 
 jobs:
   delete_old_workflows:
-    runs-on: 'ubuntu-20.04'
+    runs-on: ubuntu-latest
     steps:
       - name: Set the variables
         env:
-#          DEFAULT_DAYS: 30
-#          DEFAULT_MINIMUM_RUNS: 6
           DEFAULT_DAYS: 14
           DEFAULT_MINIMUM_RUNS: 3
         run: |
