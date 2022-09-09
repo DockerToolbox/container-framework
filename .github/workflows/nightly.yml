@@ -194,4 +194,4 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
           include_jobs: on-failure
-          include_commit_message: true
+          include_commit_message: false
