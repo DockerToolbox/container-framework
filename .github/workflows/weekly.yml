@@ -10,10 +10,11 @@ jobs:
     outputs:
       ref: ${{ steps.get-latest-tag.outputs.tag }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Get latest tag
         uses: actions-ecosystem/action-get-latest-tag@v1
         id: get-latest-tag
+
   almalinux:
     needs: get-git-ref
     name: AlmaLinux
@@ -23,6 +24,7 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 4
       force-build: true
+
   alpine:
     needs: get-git-ref
     name: Alpine Linux
@@ -32,6 +34,7 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 4
       force-build: true
+
   amazonlinux:
     needs: get-git-ref
     name: Amazon Linux
@@ -41,6 +44,7 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 2
       force-build: true
+
   archlinux:
     needs: get-git-ref
     name: Arch Linux
@@ -50,6 +54,7 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 1
       force-build: true
+
   centos:
     needs: get-git-ref
     name: Centos
@@ -59,6 +64,7 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 1
       force-build: true
+
   debian:
     needs: get-git-ref
     name: Debian
@@ -68,6 +74,7 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 8
       force-build: true
+
   oraclelinux:
     needs: get-git-ref
     name: Oracle Linux
@@ -77,6 +84,7 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 6
       force-build: true
+
   photon:
     needs: get-git-ref
     name: Photon
@@ -86,6 +94,7 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 3
       force-build: true
+
   rockylinux:
     needs: get-git-ref
     name: Rocky Linux
@@ -95,6 +104,7 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 4
       force-build: true
+
   scientificlinux:
     needs: get-git-ref
     name: Scientific Linux
@@ -104,6 +114,7 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 1
       force-build: true
+
   ubuntu:
     needs: get-git-ref
     name: Ubuntu
@@ -113,48 +124,52 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 5
       force-build: true
+
   awesomebot:
     needs: get-git-ref
     name: Awesomebot
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: ${{ needs.get-git-ref.outputs.ref }}
-      - name: Set up Ruby 3.0
+      - name: Set up Ruby 3.1
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0
+          ruby-version: 3.1
       - name: Run Awesomebot
         env:
           FLAGS: "default"
           EXCLUDE_FILES: "CHANGELOG.md,Config/.*"
           WHITELIST: "https://img.shields.io"
         run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/awesomebot/master/pipeline.sh)
+
   shellcheck:
     needs: get-git-ref
     name: ShellCheck
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: ${{ needs.get-git-ref.outputs.ref }}
       - name: Run Shellcheck
         run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/shellcheck/master/pipeline.sh)
+
   yaml-lint:
     needs: get-git-ref
     name: YAML Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: ${{ needs.get-git-ref.outputs.ref }}
-      - name: Set up Ruby 3.0
+      - name: Set up Ruby 3.1
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0
+          ruby-version: 3.1
       - name: Run YAML-Lint
         run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/yaml-lint/master/pipeline.sh)
+
   slack-message-finish:
     if: always()
     name: Slack Post Workflow Notification
@@ -176,7 +191,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Slack Workflow Notifications
-        uses: Gamesight/slack-workflow-status@v1.1.0
+        uses: Gamesight/slack-workflow-status@v1
         with:
           repo_token: ${{secrets.GITHUB_TOKEN}}
           slack_webhook_url: ${{secrets.SLACK_WEBHOOK_URL}}

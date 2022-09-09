@@ -16,19 +16,20 @@ jobs:
     steps:
       - name: Get Git Ref
         run: echo "::set-output name=ref::${{ github.ref }}"
+
   list-changes:
     needs: get-git-ref
     name: List Changes
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
           ref: ${{ needs.get-git-ref.outputs.ref }}
       - name: Get changed files using defaults
         id: changed-files
-        uses: tj-actions/changed-files@v29.0.2
+        uses: tj-actions/changed-files@v29
         with:
           files: |
             Config/**
@@ -40,6 +41,7 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_modified_files }}; do
             echo "$file was modified"
           done
+
   almalinux:
     needs: get-git-ref
     name: AlmaLinux
@@ -49,6 +51,7 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 4
       force-build: ${{ fromJSON(github.event.inputs.force-build) }}
+
   alpine:
     needs: get-git-ref
     name: Alpine Linux
@@ -58,6 +61,7 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 4
       force-build: ${{ fromJSON(github.event.inputs.force-build) }}
+
   amazonlinux:
     needs: get-git-ref
     name: Amazon Linux
@@ -67,6 +71,7 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 2
       force-build: ${{ fromJSON(github.event.inputs.force-build) }}
+
   archlinux:
     needs: get-git-ref
     name: Arch Linux
@@ -76,6 +81,7 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 1
       force-build: ${{ fromJSON(github.event.inputs.force-build) }}
+
   centos:
     needs: get-git-ref
     name: Centos
@@ -85,6 +91,7 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 1
       force-build: ${{ fromJSON(github.event.inputs.force-build) }}
+
   debian:
     needs: get-git-ref
     name: Debian
@@ -94,6 +101,7 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 8
       force-build: ${{ fromJSON(github.event.inputs.force-build) }}
+
   oraclelinux:
     needs: get-git-ref
     name: Oracle Linux
@@ -103,6 +111,7 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 6
       force-build: ${{ fromJSON(github.event.inputs.force-build) }}
+
   photon:
     needs: get-git-ref
     name: Photon
@@ -112,6 +121,7 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 3
       force-build: ${{ fromJSON(github.event.inputs.force-build) }}
+
   rockylinux:
     needs: get-git-ref
     name: Rocky Linux
@@ -121,6 +131,7 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 4
       force-build: ${{ fromJSON(github.event.inputs.force-build) }}
+
   scientificlinux:
     needs: get-git-ref
     name: Scientific Linux
@@ -130,6 +141,7 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 1
       force-build: ${{ fromJSON(github.event.inputs.force-build) }}
+
   ubuntu:
     needs: get-git-ref
     name: Ubuntu
@@ -139,45 +151,49 @@ jobs:
       ref: ${{ needs.get-git-ref.outputs.ref }}
       max-parallel: 5
       force-build: ${{ fromJSON(github.event.inputs.force-build) }}
+
   awesomebot:
     name: Awesomebot
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up Ruby 3.0
+      - uses: actions/checkout@v3
+      - name: Set up Ruby 3.1
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0
+          ruby-version: 3.1
       - name: Run Awesomebot
         env:
           FLAGS: "default"
           EXCLUDE_FILES: "CHANGELOG.md,Config/.*"
           WHITELIST: "https://img.shields.io"
         run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/awesomebot/master/pipeline.sh)
+
   shellcheck:
     needs: get-git-ref
     name: ShellCheck
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: ${{ needs.get-git-ref.outputs.ref }}
       - name: Run Shellcheck
         run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/shellcheck/master/pipeline.sh)
+
   yaml-lint:
     needs: get-git-ref
     name: YAML Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: ${{ needs.get-git-ref.outputs.ref }}
-      - name: Set up Ruby 3.0
+      - name: Set up Ruby 3.1
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0
+          ruby-version: 3.1
       - name: Run YAML-Lint
         run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/yaml-lint/master/pipeline.sh)
+
   slack-message-finish:
     if: always()
     name: Slack Post Workflow Notification
@@ -200,9 +216,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Slack Workflow Notifications
-        uses: Gamesight/slack-workflow-status@v1.1.0
+        uses: Gamesight/slack-workflow-status@v1
         with:
-          repo_token: ${{secrets.GITHUB_TOKEN}}
-          slack_webhook_url: ${{secrets.SLACK_WEBHOOK_URL}}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
           include_jobs: on-failure
           include_commit_message: true

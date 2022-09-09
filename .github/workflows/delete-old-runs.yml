@@ -25,7 +25,7 @@ jobs:
           echo "DAYS=${{ github.event.inputs.days || env.DEFAULT_DAYS }}" >> $GITHUB_ENV
           echo "MINIMUM_RUNS=${{ github.event.inputs.minimum_runs || env.DEFAULT_MINIMUM_RUNS }}" >> $GITHUB_ENV
       - name: Delete workflow runs
-        uses: Mattraks/delete-workflow-runs@v2.0.3
+        uses: Mattraks/delete-workflow-runs@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}
