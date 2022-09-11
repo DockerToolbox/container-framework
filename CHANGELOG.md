@@ -9,6 +9,8 @@ This changelog was automatically generated using [Caretaker](https://github.com/
 
 - tweaking [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
 
+- tweaking [`[26d5f12]`](https://github.com/DockerToolbox/container-framework/commit/26d5f121d12525c68a48e1cc7af0abeaec467a8e)
+
 - tweaking [`[6e39abf]`](https://github.com/DockerToolbox/container-framework/commit/6e39abf126e25330c6d9026e05a44bc89c095c93)
 
 - tweaking [`[865e24b]`](https://github.com/DockerToolbox/container-framework/commit/865e24b6a8885c6156f7b386628ac02b215d4820)

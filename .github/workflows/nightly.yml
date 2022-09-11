@@ -1,7 +1,7 @@
 name: Nightly builds
 on:
   schedule:
-    - cron:  '30 0 * * 2-6'
+    - cron:  '30 0 * * 0,2-6'
 
 jobs:
   get-git-ref:
