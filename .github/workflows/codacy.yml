@@ -18,8 +18,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@main
 
-      - name: Run Codacy Analysis CLI
-        uses: codacy/codacy-analysis-cli-action@4.1.0
+      - name: Codacy Analysis CLI
+        uses: codacy/codacy-analysis-cli-action@v4.1.0
         with:
           output: results.sarif
           format: sarif
