@@ -7,7 +7,13 @@ This changelog was automatically generated using [Caretaker](https://github.com/
 
 ### [Unreleased](https://github.com/DockerToolbox/container-framework/compare/v0.1.3...HEAD)
 
-- tweaking [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
+- codacy [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
+
+- Bump tj-actions/changed-files from 29.0.5 to 29.0.7 [`[#2]`](https://github.com/DockerToolbox/container-framework/pull/2)
+
+- Bump tj-actions/changed-files from 29.0.4 to 29.0.5 [`[#1]`](https://github.com/DockerToolbox/container-framework/pull/1)
+
+- tweaking [`[4abd254]`](https://github.com/DockerToolbox/container-framework/commit/4abd2546558e739c2763177eec8153cdc3f89a74)
 
 - tweaking [`[26d5f12]`](https://github.com/DockerToolbox/container-framework/commit/26d5f121d12525c68a48e1cc7af0abeaec467a8e)
 
