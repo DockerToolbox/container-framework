@@ -1,0 +1,224 @@
+name: Manually build containers
+on:
+  workflow_dispatch:
+    inputs:
+      force-build:
+        type: boolean
+        default: false
+        required: true
+
+jobs:
+  get-git-ref:
+    name: Get Git Ref
+    runs-on: ubuntu-latest
+    outputs:
+      ref: ${{steps.get-git-ref.outputs.ref}}
+    steps:
+      - name: Get Git Ref
+        run: echo "::set-output name=ref::${{ github.ref }}"
+
+  list-changes:
+    needs: get-git-ref
+    name: List Changes
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: ${{ needs.get-git-ref.outputs.ref }}
+      - name: Get changed files using defaults
+        id: changed-files
+        uses: tj-actions/changed-files@v29.0.9
+        with:
+          files: |
+            Config/**
+            Templates/**
+            Scripts/**
+            Dockerfiles/**
+      - name: List all modified files
+        run: |
+          for file in ${{ steps.changed-files.outputs.all_modified_files }}; do
+            echo "$file was modified"
+          done
+
+  almalinux:
+    needs: get-git-ref
+    name: AlmaLinux
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: almalinux
+      ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 4
+      force-build: ${{ fromJSON(github.event.inputs.force-build) }}
+
+  alpine:
+    needs: get-git-ref
+    name: Alpine Linux
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: alpine
+      ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 4
+      force-build: ${{ fromJSON(github.event.inputs.force-build) }}
+
+  amazonlinux:
+    needs: get-git-ref
+    name: Amazon Linux
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: amazonlinux
+      ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 2
+      force-build: ${{ fromJSON(github.event.inputs.force-build) }}
+
+  archlinux:
+    needs: get-git-ref
+    name: Arch Linux
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: archlinux
+      ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 1
+      force-build: ${{ fromJSON(github.event.inputs.force-build) }}
+
+  centos:
+    needs: get-git-ref
+    name: Centos
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: centos
+      ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 1
+      force-build: ${{ fromJSON(github.event.inputs.force-build) }}
+
+  debian:
+    needs: get-git-ref
+    name: Debian
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: debian
+      ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 8
+      force-build: ${{ fromJSON(github.event.inputs.force-build) }}
+
+  oraclelinux:
+    needs: get-git-ref
+    name: Oracle Linux
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: oraclelinux
+      ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 6
+      force-build: ${{ fromJSON(github.event.inputs.force-build) }}
+
+  photon:
+    needs: get-git-ref
+    name: Photon
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: photon
+      ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 3
+      force-build: ${{ fromJSON(github.event.inputs.force-build) }}
+
+  rockylinux:
+    needs: get-git-ref
+    name: Rocky Linux
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: rockylinux
+      ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 4
+      force-build: ${{ fromJSON(github.event.inputs.force-build) }}
+
+  scientificlinux:
+    needs: get-git-ref
+    name: Scientific Linux
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: sl
+      ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 1
+      force-build: ${{ fromJSON(github.event.inputs.force-build) }}
+
+  ubuntu:
+    needs: get-git-ref
+    name: Ubuntu
+    uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
+    with:
+      directory: ubuntu
+      ref: ${{ needs.get-git-ref.outputs.ref }}
+      max-parallel: 5
+      force-build: ${{ fromJSON(github.event.inputs.force-build) }}
+
+  awesomebot:
+    name: Awesomebot
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Ruby 3.1
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1
+      - name: Run Awesomebot
+        env:
+          FLAGS: "default"
+          EXCLUDE_FILES: "CHANGELOG.md,Config/.*"
+          WHITELIST: "https://img.shields.io"
+        run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/awesomebot/master/pipeline.sh)
+
+  shellcheck:
+    needs: get-git-ref
+    name: ShellCheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ needs.get-git-ref.outputs.ref }}
+      - name: Run Shellcheck
+        run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/shellcheck/master/pipeline.sh)
+
+  yaml-lint:
+    needs: get-git-ref
+    name: YAML Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ needs.get-git-ref.outputs.ref }}
+      - name: Set up Ruby 3.1
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1
+      - name: Run YAML-Lint
+        run: bash <(curl -s https://raw.githubusercontent.com/CICDToolbox/yaml-lint/master/pipeline.sh)
+
+  slack-message-finish:
+    if: always()
+    name: Slack Post Workflow Notification
+    needs:
+      - list-changes
+      - almalinux
+      - alpine
+      - amazonlinux
+      - archlinux
+      - centos
+      - debian
+      - oraclelinux
+      - photon
+      - rockylinux
+      - scientificlinux
+      - ubuntu
+      - awesomebot
+      - shellcheck
+      - yaml-lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Slack Workflow Notifications
+        uses: Gamesight/slack-workflow-status@v1.1.0
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          include_jobs: on-failure
+          include_commit_message: false
