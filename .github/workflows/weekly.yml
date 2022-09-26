@@ -14,10 +14,13 @@ jobs:
       - name: Get latest tag
         uses: actions-ecosystem/action-get-latest-tag@v1
         id: get-latest-tag
+        with:
+          semver_only: true
 
   almalinux:
     needs: get-git-ref
     name: AlmaLinux
+    if: ${{ needs.get-git-ref.outputs.ref != 'v0.0.0' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: almalinux
@@ -28,6 +31,7 @@ jobs:
   alpine:
     needs: get-git-ref
     name: Alpine Linux
+    if: ${{ needs.get-git-ref.outputs.ref != 'v0.0.0' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: alpine
@@ -38,6 +42,7 @@ jobs:
   amazonlinux:
     needs: get-git-ref
     name: Amazon Linux
+    if: ${{ needs.get-git-ref.outputs.ref != 'v0.0.0' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: amazonlinux
@@ -48,6 +53,7 @@ jobs:
   archlinux:
     needs: get-git-ref
     name: Arch Linux
+    if: ${{ needs.get-git-ref.outputs.ref != 'v0.0.0' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: archlinux
@@ -58,6 +64,7 @@ jobs:
   centos:
     needs: get-git-ref
     name: Centos
+    if: ${{ needs.get-git-ref.outputs.ref != 'v0.0.0' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: centos
@@ -68,6 +75,7 @@ jobs:
   debian:
     needs: get-git-ref
     name: Debian
+    if: ${{ needs.get-git-ref.outputs.ref != 'v0.0.0' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: debian
@@ -78,6 +86,7 @@ jobs:
   oraclelinux:
     needs: get-git-ref
     name: Oracle Linux
+    if: ${{ needs.get-git-ref.outputs.ref != 'v0.0.0' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: oraclelinux
@@ -88,6 +97,7 @@ jobs:
   photon:
     needs: get-git-ref
     name: Photon
+    if: ${{ needs.get-git-ref.outputs.ref != 'v0.0.0' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: photon
@@ -98,6 +108,7 @@ jobs:
   rockylinux:
     needs: get-git-ref
     name: Rocky Linux
+    if: ${{ needs.get-git-ref.outputs.ref != 'v0.0.0' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: rockylinux
@@ -108,6 +119,7 @@ jobs:
   scientificlinux:
     needs: get-git-ref
     name: Scientific Linux
+    if: ${{ needs.get-git-ref.outputs.ref != 'v0.0.0' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: sl
@@ -118,6 +130,7 @@ jobs:
   ubuntu:
     needs: get-git-ref
     name: Ubuntu
+    if: ${{ needs.get-git-ref.outputs.ref != 'v0.0.0' }}
     uses: actionstoolbox/container-framework-actions/.github/workflows/multiple-os-workflow.yml@master
     with:
       directory: ubuntu
