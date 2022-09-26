@@ -9,6 +9,8 @@ This changelog was automatically generated using [Caretaker](https://github.com/
 
 - Added checks for no tag in weekly build [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
 
+- Added checks for no tag in weekly build [`[59792e1]`](https://github.com/DockerToolbox/container-framework/commit/59792e1fd7a60d3877a67bd90cf97f28c87e3ed8)
+
 - Added checks for no tag in weekly build [`[7365a12]`](https://github.com/DockerToolbox/container-framework/commit/7365a12498363319cd57c5020bda134aa29bce52)
 
 - Added checks for no tag in weekly build [`[4445a11]`](https://github.com/DockerToolbox/container-framework/commit/4445a11dbca66327724a7728f60de098c7cf459e)
