@@ -7,7 +7,9 @@ This changelog was automatically generated using [Caretaker](https://github.com/
 
 ### [Unreleased](https://github.com/DockerToolbox/container-framework/compare/v0.1.3...HEAD)
 
-- Weekly, Sunday, 4am [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
+- Fix shellcheck after new release [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
+
+- Weekly, Sunday, 4am [`[8387e5f]`](https://github.com/DockerToolbox/container-framework/commit/8387e5fa66537e24ae615275537c5680b4d5642d)
 
 - Bump tj-actions/changed-files from 31.0.2 to 31.0.3 [`[#7]`](https://github.com/DockerToolbox/container-framework/pull/7)
 
