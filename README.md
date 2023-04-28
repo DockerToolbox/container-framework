@@ -59,8 +59,6 @@ The framework attempts to support as many operating system distributions and ver
 | Amazon Linux 2                 | [Base Image](https://hub.do\cker.com/_/amazonlinux) | 2 & latest              |
 | Arch Linux                     | [Base Image](https://hub.docker.com/_/archlinux)    | base & latest           |
 | Centos 7                       | [Base Image](https://hub.docker.com/_/centos)       | 7 & latest              |
-| Debian 9 (Stretch)             | [Base Image](https://hub.docker.com/_/debian)       | 9 & stretch             |
-| Debian 9 (Stretch) Slim        | [Base Image](https://hub.docker.com/_/debian)       | 9-slim & stretch-slim   |
 | Debian 10 (Buster)             | [Base Image](https://hub.docker.com/_/debian)       | 10 & buster             |
 | Debian 10 (Buster) Slim        | [Base Image](https://hub.docker.com/_/debian)       | 10-slim & buster-slim   |
 | Debian 11 (Bullseye)           | [Base Image](https://hub.docker.com/_/debian)       | 11, bullseye & latest   |
@@ -131,8 +129,6 @@ Dockerfiles
 ├── centos
 │   └── 7
 ├── debian
-│   ├── 9
-│   ├── 9-slim
 │   ├── 10
 │   ├── 10-slim
 │   ├── 11

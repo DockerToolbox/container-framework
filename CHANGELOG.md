@@ -7,7 +7,21 @@ This changelog was automatically generated using [Caretaker](https://github.com/
 
 ### [Unreleased](https://github.com/DockerToolbox/container-framework/compare/v0.1.3...HEAD)
 
-- Fix shellcheck after new release [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
+- Remove debian 9 [`[head]`](https://github.com/DockerToolbox/container-framework/commit/)
+
+- Bump tj-actions/changed-files from 35.4.1 to 35.8.0 [`[#59]`](https://github.com/DockerToolbox/container-framework/pull/59)
+
+- Bump actions/stale from 7 to 8 [`[#54]`](https://github.com/DockerToolbox/container-framework/pull/54)
+
+- Bump Gamesight/slack-workflow-status from 1.1.0 to 1.2.0 [`[#36]`](https://github.com/DockerToolbox/container-framework/pull/36)
+
+- Bump tj-actions/changed-files from 34.6.1 to 35.4.1 [`[#35]`](https://github.com/DockerToolbox/container-framework/pull/35)
+
+- Bump actions/stale from 6 to 7 [`[#29]`](https://github.com/DockerToolbox/container-framework/pull/29)
+
+- Merge branch 'master' of github.com:DockerToolbox/container-framework [`[167881d]`](https://github.com/DockerToolbox/container-framework/commit/167881d32379adad2c3aab2feee2d486c4cc2e1f)
+
+- Fix shellcheck after new release [`[435e745]`](https://github.com/DockerToolbox/container-framework/commit/435e7456ee414ca13d7656b209e188c335eee6e1)
 
 - Weekly, Sunday, 4am [`[8387e5f]`](https://github.com/DockerToolbox/container-framework/commit/8387e5fa66537e24ae615275537c5680b4d5642d)
 
