@@ -35,7 +35,7 @@ jobs:
           ref: ${{ needs.get-git-ref.outputs.ref }}
       - name: Get all changed files (using defaults)
         id: changed-files
-        uses: tj-actions/changed-files@v35.8.0
+        uses: tj-actions/changed-files@v37.3.0
         with:
           files: |
             Config/**
