@@ -128,7 +128,7 @@ jobs:
     name: Awesomebot
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ needs.get-git-ref.outputs.ref }}
       - name: Set up Ruby 3.1
@@ -147,7 +147,7 @@ jobs:
     name: ShellCheck
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ needs.get-git-ref.outputs.ref }}
       - name: Run Shellcheck
@@ -158,7 +158,7 @@ jobs:
     name: YAML Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ needs.get-git-ref.outputs.ref }}
       - name: Set up Ruby 3.1

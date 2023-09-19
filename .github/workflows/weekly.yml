@@ -11,7 +11,7 @@ jobs:
     outputs:
       ref: ${{ steps.get-latest-tag.outputs.tag }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Get latest tag
         uses: actions-ecosystem/action-get-latest-tag@v1
         id: get-latest-tag
@@ -145,7 +145,7 @@ jobs:
     if: ${{ needs.get-git-ref.outputs.ref != 'v0.0.0' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ needs.get-git-ref.outputs.ref }}
       - name: Set up Ruby 3.1
@@ -165,7 +165,7 @@ jobs:
     if: ${{ needs.get-git-ref.outputs.ref != 'v0.0.0' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ needs.get-git-ref.outputs.ref }}
       - name: Run Shellcheck
@@ -177,7 +177,7 @@ jobs:
     if: ${{ needs.get-git-ref.outputs.ref != 'v0.0.0' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ needs.get-git-ref.outputs.ref }}
       - name: Set up Ruby 3.1

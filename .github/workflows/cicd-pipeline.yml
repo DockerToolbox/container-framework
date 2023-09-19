@@ -29,7 +29,7 @@ jobs:
       any_modified: ${{steps.changed-files.outputs.any_modified}}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           ref: ${{ needs.get-git-ref.outputs.ref }}
@@ -163,7 +163,7 @@ jobs:
     name: Run Awesomebot
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ needs.get-git-ref.outputs.ref }}
       - name: Set up Ruby 3.1
@@ -182,7 +182,7 @@ jobs:
     name: Run ShellCheck
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ needs.get-git-ref.outputs.ref }}
       - name: Run Shellcheck
@@ -193,7 +193,7 @@ jobs:
     name: Run YAML-Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ needs.get-git-ref.outputs.ref }}
       - name: Set up Ruby 3.1
